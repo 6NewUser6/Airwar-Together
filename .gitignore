@@ -1,6 +1,13 @@
 # Downloaded development tools and temporary verification output
 .tools/
 
+# Reference material and MCP development tooling stay on this computer.
+/参考项目/
+/scripts/
+/airwar-together/addons/godot_mcp/
+/airwar-together/.env.example
+/airwar-together/local.props
+
 # Local IDE state, account data, and duplicate reference archives
 **/.idea/
 **/users.csv

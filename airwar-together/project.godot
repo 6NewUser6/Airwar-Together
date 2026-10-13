@@ -23,10 +23,6 @@ window/stretch/aspect="expand"
 
 project/assembly_name="airwar-together"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/godot_mcp/plugin.cfg")
-
 [physics]
 
 3d/physics_engine="Jolt Physics"
