@@ -1,0 +1,7 @@
+# Downloaded development tools and temporary verification output
+.tools/
+
+# Local IDE state, account data, and duplicate reference archives
+**/.idea/
+**/users.csv
+/参考项目/*.zip
