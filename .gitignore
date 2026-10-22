@@ -1,5 +1,9 @@
 # Downloaded development tools and temporary verification output
 .tools/
+builds/
+artifacts/
+__pycache__/
+*.pyc
 
 # Reference material and MCP development tooling stay on this computer.
 /参考项目/
