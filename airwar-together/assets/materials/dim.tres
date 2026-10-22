@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "dim"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.08235294, 0.22745098, 0.30588236, 1)

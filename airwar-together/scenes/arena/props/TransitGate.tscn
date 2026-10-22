@@ -1,0 +1,118 @@
+[gd_scene format=3]
+
+[ext_resource type="Mesh" path="res://assets/arena/meshes/gate_ring.obj" id="r1"]
+[ext_resource type="Material" path="res://assets/arena/materials/dark.tres" id="r2"]
+[ext_resource type="Material" path="res://assets/arena/materials/cyan.tres" id="r3"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/box.tres" id="r4"]
+[ext_resource type="Material" path="res://assets/arena/materials/white.tres" id="r5"]
+
+
+[node name="TransitGate" type="Node3D"]
+
+[node name="ArmoredRing" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+scale = Vector3(1.08, 1.08, 1.8)
+mesh = ExtResource("r1")
+material_override = ExtResource("r2")
+cast_shadow = 0
+visibility_range_end = 10000
+visibility_range_end_margin = 300.0
+
+
+[node name="InnerFlux" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+scale = Vector3(1, 1, 0.35)
+mesh = ExtResource("r1")
+material_override = ExtResource("r3")
+cast_shadow = 0
+visibility_range_end = 10000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment0" type="MeshInstance3D" parent="."]
+position = Vector3(132.0, 0.0, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 0.0)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment1" type="MeshInstance3D" parent="."]
+position = Vector3(93.33809511662427, 93.33809511662427, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 0.7853981633974483)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment2" type="MeshInstance3D" parent="."]
+position = Vector3(8.082668874372531e-15, 132.0, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 1.5707963267948966)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment3" type="MeshInstance3D" parent="."]
+position = Vector3(-93.33809511662426, 93.33809511662427, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 2.356194490192345)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment4" type="MeshInstance3D" parent="."]
+position = Vector3(-132.0, 1.6165337748745062e-14, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 3.141592653589793)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment5" type="MeshInstance3D" parent="."]
+position = Vector3(-93.33809511662429, -93.33809511662426, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 3.9269908169872414)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment6" type="MeshInstance3D" parent="."]
+position = Vector3(-2.424800662311759e-14, -132.0, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 4.71238898038469)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+
+
+[node name="Segment7" type="MeshInstance3D" parent="."]
+position = Vector3(93.33809511662425, -93.33809511662429, 0)
+scale = Vector3(14, 28, 35)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+rotation = Vector3(0, 0, 5.497787143782138)
+visibility_range_end = 8000
+visibility_range_end_margin = 300.0
+

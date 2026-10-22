@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "ships/gold_accent"
+cull_mode = 2
+albedo_color = Color(0.9019608, 0.70980394, 0.3882353, 1)
+metallic = 0.65
+roughness = 0.38
+emission = Color(0.9019608, 0.70980394, 0.3882353, 1)
+emission_energy_multiplier = 0.0

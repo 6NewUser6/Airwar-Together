@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Core/ShipDefinition.cs" id="1_definition"]
+[ext_resource type="PackedScene" path="res://scenes/ships/jade.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_definition")
+Id = "jade"
+Name = "青玉"
+Role = "JADE / 玉石涂装"
+Color = Color(0.31764706, 0.78431373, 0.73333333, 1)
+Shape = 4
+Cost = 25
+VisualScene = ExtResource("2_scene")

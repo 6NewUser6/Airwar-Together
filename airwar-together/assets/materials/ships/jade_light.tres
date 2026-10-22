@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "ships/jade_light"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.31764707, 0.78431374, 0.73333335, 1)

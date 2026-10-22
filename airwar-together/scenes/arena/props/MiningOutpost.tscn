@@ -1,0 +1,338 @@
+[gd_scene format=3]
+
+[ext_resource type="Mesh" path="res://assets/arena/meshes/cylinder.tres" id="r1"]
+[ext_resource type="Material" path="res://assets/arena/materials/dark.tres" id="r2"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/box.tres" id="r3"]
+[ext_resource type="Material" path="res://assets/arena/materials/alloy.tres" id="r4"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/gate_ring.obj" id="r5"]
+[ext_resource type="Material" path="res://assets/arena/materials/cyan.tres" id="r6"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_A.gltf" id="r7"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_B.gltf" id="r8"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_C.gltf" id="r9"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_E.gltf" id="r10"]
+[ext_resource type="Material" path="res://assets/arena/materials/white.tres" id="r11"]
+[ext_resource type="Material" path="res://assets/arena/materials/orange.tres" id="r12"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/drill_structure.gltf" id="r13"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/cargodepot_A.gltf" id="r14"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/lander_A.gltf" id="r15"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/structure_tall.gltf" id="r16"]
+
+
+[node name="MiningOutpost" type="Node3D"]
+
+[node name="RaisedFoundation" type="MeshInstance3D" parent="."]
+position = Vector3(0, -8, 0)
+scale = Vector3(860, 16, 860)
+mesh = ExtResource("r1")
+material_override = ExtResource("r2")
+cast_shadow = 0
+visibility_range_end = 7000
+visibility_range_end_margin = 300.0
+
+
+[node name="FoundationPier0" type="MeshInstance3D" parent="."]
+position = Vector3(-260, -206, -230)
+scale = Vector3(58, 396, 58)
+mesh = ExtResource("r3")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 5000
+visibility_range_end_margin = 300.0
+
+
+[node name="FoundationPier1" type="MeshInstance3D" parent="."]
+position = Vector3(260, -206, -230)
+scale = Vector3(58, 396, 58)
+mesh = ExtResource("r3")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 5000
+visibility_range_end_margin = 300.0
+
+
+[node name="FoundationPier2" type="MeshInstance3D" parent="."]
+position = Vector3(-260, -206, 230)
+scale = Vector3(58, 396, 58)
+mesh = ExtResource("r3")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 5000
+visibility_range_end_margin = 300.0
+
+
+[node name="FoundationPier3" type="MeshInstance3D" parent="."]
+position = Vector3(260, -206, 230)
+scale = Vector3(58, 396, 58)
+mesh = ExtResource("r3")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 5000
+visibility_range_end_margin = 300.0
+
+
+[node name="LandingApron" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1, 0)
+scale = Vector3(220, 2, 220)
+mesh = ExtResource("r1")
+material_override = ExtResource("r2")
+cast_shadow = 0
+visibility_range_end = 5000
+visibility_range_end_margin = 300.0
+
+
+[node name="LandingBeacon" type="MeshInstance3D" parent="."]
+position = Vector3(0, 3, 0)
+scale = Vector3(0.78, 0.78, 0.25)
+mesh = ExtResource("r5")
+material_override = ExtResource("r6")
+cast_shadow = 0
+rotation = Vector3(1.5707963267948966, 0, 0)
+visibility_range_end = 5000
+visibility_range_end_margin = 300.0
+
+
+[node name="Habitat0" parent="." instance=ExtResource("r7")]
+position = Vector3(-160, 0, -90)
+scale = Vector3(34, 34, 34)
+
+
+[node name="Habitat1" parent="." instance=ExtResource("r8")]
+position = Vector3(160, 0, -100)
+scale = Vector3(34, 34, 34)
+
+
+[node name="Habitat2" parent="." instance=ExtResource("r9")]
+position = Vector3(-150, 0, 100)
+scale = Vector3(34, 34, 34)
+
+
+[node name="Habitat3" parent="." instance=ExtResource("r10")]
+position = Vector3(150, 0, 110)
+scale = Vector3(34, 34, 34)
+
+
+[node name="OperationsSpire" type="MeshInstance3D" parent="."]
+position = Vector3(0, 70, -180)
+scale = Vector3(34, 140, 34)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+visibility_range_end = 7000
+visibility_range_end_margin = 300.0
+
+
+[node name="ControlDeck" type="MeshInstance3D" parent="."]
+position = Vector3(0, 125, -180)
+scale = Vector3(82, 25, 82)
+mesh = ExtResource("r1")
+material_override = ExtResource("r11")
+cast_shadow = 0
+visibility_range_end = 7000
+visibility_range_end_margin = 300.0
+
+
+[node name="ControlGlass" type="MeshInstance3D" parent="."]
+position = Vector3(0, 125, -180)
+scale = Vector3(84, 8, 84)
+mesh = ExtResource("r1")
+material_override = ExtResource("r6")
+cast_shadow = 0
+visibility_range_end = 3500
+visibility_range_end_margin = 300.0
+
+
+[node name="Antenna" type="MeshInstance3D" parent="."]
+position = Vector3(0, 162, -180)
+scale = Vector3(3, 50, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="Tank0" type="MeshInstance3D" parent="."]
+position = Vector3(-255, 28, -190)
+scale = Vector3(26, 56, 26)
+mesh = ExtResource("r1")
+material_override = ExtResource("r12")
+cast_shadow = 0
+visibility_range_end = 3500
+visibility_range_end_margin = 300.0
+
+
+[node name="Tank1" type="MeshInstance3D" parent="."]
+position = Vector3(-218, 28, -190)
+scale = Vector3(26, 56, 26)
+mesh = ExtResource("r1")
+material_override = ExtResource("r12")
+cast_shadow = 0
+visibility_range_end = 3500
+visibility_range_end_margin = 300.0
+
+
+[node name="Tank2" type="MeshInstance3D" parent="."]
+position = Vector3(-181, 28, -190)
+scale = Vector3(26, 56, 26)
+mesh = ExtResource("r1")
+material_override = ExtResource("r12")
+cast_shadow = 0
+visibility_range_end = 3500
+visibility_range_end_margin = 300.0
+
+
+[node name="Tank3" type="MeshInstance3D" parent="."]
+position = Vector3(-144, 28, -190)
+scale = Vector3(26, 56, 26)
+mesh = ExtResource("r1")
+material_override = ExtResource("r12")
+cast_shadow = 0
+visibility_range_end = 3500
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarArray0" type="MeshInstance3D" parent="."]
+position = Vector3(-220, 17, 230)
+scale = Vector3(73, 2, 44)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+rotation = Vector3(0.25, 0, 0)
+visibility_range_end = 3000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarSupport0" type="MeshInstance3D" parent="."]
+position = Vector3(-220, 8, 230)
+scale = Vector3(3, 16, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 2000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarArray1" type="MeshInstance3D" parent="."]
+position = Vector3(-132, 17, 230)
+scale = Vector3(73, 2, 44)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+rotation = Vector3(0.25, 0, 0)
+visibility_range_end = 3000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarSupport1" type="MeshInstance3D" parent="."]
+position = Vector3(-132, 8, 230)
+scale = Vector3(3, 16, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 2000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarArray2" type="MeshInstance3D" parent="."]
+position = Vector3(-44, 17, 230)
+scale = Vector3(73, 2, 44)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+rotation = Vector3(0.25, 0, 0)
+visibility_range_end = 3000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarSupport2" type="MeshInstance3D" parent="."]
+position = Vector3(-44, 8, 230)
+scale = Vector3(3, 16, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 2000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarArray3" type="MeshInstance3D" parent="."]
+position = Vector3(44, 17, 230)
+scale = Vector3(73, 2, 44)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+rotation = Vector3(0.25, 0, 0)
+visibility_range_end = 3000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarSupport3" type="MeshInstance3D" parent="."]
+position = Vector3(44, 8, 230)
+scale = Vector3(3, 16, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 2000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarArray4" type="MeshInstance3D" parent="."]
+position = Vector3(132, 17, 230)
+scale = Vector3(73, 2, 44)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+rotation = Vector3(0.25, 0, 0)
+visibility_range_end = 3000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarSupport4" type="MeshInstance3D" parent="."]
+position = Vector3(132, 8, 230)
+scale = Vector3(3, 16, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 2000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarArray5" type="MeshInstance3D" parent="."]
+position = Vector3(220, 17, 230)
+scale = Vector3(73, 2, 44)
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 0
+rotation = Vector3(0.25, 0, 0)
+visibility_range_end = 3000
+visibility_range_end_margin = 300.0
+
+
+[node name="SolarSupport5" type="MeshInstance3D" parent="."]
+position = Vector3(220, 8, 230)
+scale = Vector3(3, 16, 3)
+mesh = ExtResource("r1")
+material_override = ExtResource("r4")
+cast_shadow = 0
+visibility_range_end = 2000
+visibility_range_end_margin = 300.0
+
+
+[node name="Industrial0" parent="." instance=ExtResource("r13")]
+position = Vector3(-320, 30, 10)
+scale = Vector3(55, 55, 55)
+
+
+[node name="Industrial1" parent="." instance=ExtResource("r14")]
+position = Vector3(280, 0, 90)
+scale = Vector3(38, 38, 38)
+
+
+[node name="Industrial2" parent="." instance=ExtResource("r15")]
+position = Vector3(0, 3, 0)
+scale = Vector3(40, 40, 40)
+
+
+[node name="Industrial3" parent="." instance=ExtResource("r16")]
+position = Vector3(280, 0, -110)
+scale = Vector3(44, 44, 44)
+

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ShipLibrary" load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/Core/ShipLibrary.cs" id="1_library"]
+[ext_resource type="Script" path="res://scripts/Core/ShipDefinition.cs" id="2_definition"]
+[ext_resource type="Resource" path="res://assets/catalog/spectre.tres" id="ship_0"]
+[ext_resource type="Resource" path="res://assets/catalog/ember.tres" id="ship_1"]
+[ext_resource type="Resource" path="res://assets/catalog/wraith.tres" id="ship_2"]
+[ext_resource type="Resource" path="res://assets/catalog/stratus.tres" id="ship_3"]
+[ext_resource type="Resource" path="res://assets/catalog/manta.tres" id="ship_4"]
+[ext_resource type="Resource" path="res://assets/catalog/raptor.tres" id="ship_5"]
+[ext_resource type="Resource" path="res://assets/catalog/ion.tres" id="ship_6"]
+[ext_resource type="Resource" path="res://assets/catalog/flare.tres" id="ship_7"]
+[ext_resource type="Resource" path="res://assets/catalog/nebula.tres" id="ship_8"]
+[ext_resource type="Resource" path="res://assets/catalog/arctic.tres" id="ship_9"]
+[ext_resource type="Resource" path="res://assets/catalog/jade.tres" id="ship_10"]
+[ext_resource type="Resource" path="res://assets/catalog/gold.tres" id="ship_11"]
+
+[resource]
+script = ExtResource("1_library")
+Ships = Array[ExtResource("2_definition")]([ExtResource("ship_0"), ExtResource("ship_1"), ExtResource("ship_2"), ExtResource("ship_3"), ExtResource("ship_4"), ExtResource("ship_5"), ExtResource("ship_6"), ExtResource("ship_7"), ExtResource("ship_8"), ExtResource("ship_9"), ExtResource("ship_10"), ExtResource("ship_11")])

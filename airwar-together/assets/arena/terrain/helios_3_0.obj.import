@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://mfhiecxopff5"
+path="res://.godot/imported/helios_3_0.obj-89622b84958cfbc1b483d2b633f0d6bb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/helios_3_0.obj-89622b84958cfbc1b483d2b633f0d6bb.mesh"]
+
+source_file="res://assets/arena/terrain/helios_3_0.obj"
+dest_files=["res://.godot/imported/helios_3_0.obj-89622b84958cfbc1b483d2b633f0d6bb.mesh", "res://.godot/imported/helios_3_0.obj-89622b84958cfbc1b483d2b633f0d6bb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

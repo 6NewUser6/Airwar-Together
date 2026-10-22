@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/Audio/FlightAudio.cs" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/flight_music.wav" id="2_music"]
+[ext_resource type="AudioStream" path="res://assets/audio/hit.wav" id="3_hit"]
+[ext_resource type="AudioStream" path="res://assets/audio/collect.wav" id="4_collect"]
+[ext_resource type="AudioStream" path="res://assets/audio/boost.wav" id="5_boost"]
+[ext_resource type="AudioStream" path="res://assets/audio/pulse.wav" id="6_pulse"]
+[ext_resource type="AudioStream" path="res://assets/audio/near_miss.wav" id="7_near_miss"]
+[ext_resource type="AudioStream" path="res://assets/audio/finished.wav" id="8_finished"]
+
+[node name="FlightAudio" type="Node"]
+script = ExtResource("1_script")
+HitSound = ExtResource("3_hit")
+CollectSound = ExtResource("4_collect")
+BoostSound = ExtResource("5_boost")
+PulseSound = ExtResource("6_pulse")
+NearMissSound = ExtResource("7_near_miss")
+FinishedSound = ExtResource("8_finished")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_music")
+volume_db = -12.0
+
+[node name="Voices" type="Node" parent="."]
+
+[node name="Voice01" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice02" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice03" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice04" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice05" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice06" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice07" type="AudioStreamPlayer" parent="Voices"]
+
+[node name="Voice08" type="AudioStreamPlayer" parent="Voices"]

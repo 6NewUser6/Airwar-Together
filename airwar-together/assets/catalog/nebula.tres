@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Core/ShipDefinition.cs" id="1_definition"]
+[ext_resource type="PackedScene" path="res://scenes/ships/nebula.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_definition")
+Id = "nebula"
+Name = "星云"
+Role = "NEBULA / 深空涂装"
+Color = Color(0.66274510, 0.46666667, 0.87450980, 1)
+Shape = 2
+Cost = 25
+VisualScene = ExtResource("2_scene")

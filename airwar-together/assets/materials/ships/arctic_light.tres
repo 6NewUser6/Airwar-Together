@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "ships/arctic_light"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.89411765, 0.93333334, 0.9607843, 1)

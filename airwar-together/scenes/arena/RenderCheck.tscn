@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/Arena/ArenaRenderChecks.cs" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/arena/ArenaWorld.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/arena/ArenaAudio.tscn" id="3"]
+
+[node name="ArenaRenderCheck" type="Node"]
+script = ExtResource("1")
+
+[node name="World" parent="." instance=ExtResource("2")]
+
+[node name="Audio" parent="." instance=ExtResource("3")]

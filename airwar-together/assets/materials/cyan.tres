@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "cyan"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.39607844, 0.8666667, 0.92156863, 1)

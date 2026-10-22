@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+[ext_resource type="Shader" path="res://assets/arena/materials/terrain.gdshader" id="1"]
+[resource]
+shader = ExtResource("1")
+shader_parameter/low_color = Color(0.266667, 0.188235, 0.137255, 1)
+shader_parameter/high_color = Color(0.580392, 0.423529, 0.294118, 1)
+shader_parameter/cliff_color = Color(0.384314, 0.282353, 0.2, 1)
+shader_parameter/height_scale = 0.0025

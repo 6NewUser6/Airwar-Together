@@ -1,0 +1,146 @@
+[
+  {
+    "id": "spectre",
+    "sourceShip": "Striker",
+    "color": "Blue",
+    "vertices": 4911,
+    "dimensions": [
+      2.68821,
+      1.43374,
+      4.5
+    ],
+    "bytes": 552008
+  },
+  {
+    "id": "ember",
+    "sourceShip": "Spitfire",
+    "color": "Orange",
+    "vertices": 4107,
+    "dimensions": [
+      3.0,
+      0.87094,
+      2.14753
+    ],
+    "bytes": 544196
+  },
+  {
+    "id": "wraith",
+    "sourceShip": "Omen",
+    "color": "Purple",
+    "vertices": 1781,
+    "dimensions": [
+      3.0,
+      0.73651,
+      2.95237
+    ],
+    "bytes": 425988
+  },
+  {
+    "id": "stratus",
+    "sourceShip": "Zenith",
+    "color": "Blue",
+    "vertices": 2569,
+    "dimensions": [
+      2.09848,
+      2.02469,
+      4.5
+    ],
+    "bytes": 456052
+  },
+  {
+    "id": "manta",
+    "sourceShip": "Pancake",
+    "color": "Green",
+    "vertices": 3510,
+    "dimensions": [
+      3.0,
+      0.74246,
+      2.35172
+    ],
+    "bytes": 511536
+  },
+  {
+    "id": "raptor",
+    "sourceShip": "Challenger",
+    "color": "Red",
+    "vertices": 2124,
+    "dimensions": [
+      3.0,
+      0.86326,
+      2.90803
+    ],
+    "bytes": 451208
+  },
+  {
+    "id": "ion",
+    "sourceShip": "Insurgent",
+    "color": "Blue",
+    "vertices": 7648,
+    "dimensions": [
+      2.2871,
+      1.17961,
+      4.5
+    ],
+    "bytes": 636836
+  },
+  {
+    "id": "flare",
+    "sourceShip": "Executioner",
+    "color": "Orange",
+    "vertices": 3819,
+    "dimensions": [
+      3.0,
+      0.55293,
+      2.75456
+    ],
+    "bytes": 492336
+  },
+  {
+    "id": "nebula",
+    "sourceShip": "Dispatcher",
+    "color": "Purple",
+    "vertices": 1169,
+    "dimensions": [
+      2.1502,
+      1.35326,
+      4.5
+    ],
+    "bytes": 336992
+  },
+  {
+    "id": "arctic",
+    "sourceShip": "Imperial",
+    "color": "Blue",
+    "vertices": 3673,
+    "dimensions": [
+      1.87525,
+      0.80144,
+      4.5
+    ],
+    "bytes": 495668
+  },
+  {
+    "id": "jade",
+    "sourceShip": "Spitfire",
+    "color": "Green",
+    "vertices": 4107,
+    "dimensions": [
+      3.0,
+      0.87094,
+      2.14753
+    ],
+    "bytes": 555524
+  },
+  {
+    "id": "gold",
+    "sourceShip": "Challenger",
+    "color": "Orange",
+    "vertices": 2124,
+    "dimensions": [
+      3.0,
+      0.86326,
+      2.90803
+    ],
+    "bytes": 470676
+  }
+]

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "ships/spectre_light"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.3372549, 0.87058824, 0.9411765, 1)

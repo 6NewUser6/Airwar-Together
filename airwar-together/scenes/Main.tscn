@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/world/CombatWorld.tscn" id="2_world"]
+[ext_resource type="PackedScene" path="res://scenes/audio/FlightAudio.tscn" id="3_audio"]
+[ext_resource type="PackedScene" path="res://scenes/ui/FlightHud.tscn" id="4_hud"]
+[ext_resource type="Script" path="res://scripts/UI/FlightMarker.cs" id="5_marker"]
 
 [node name="AirwarTogether" type="Node"]
 script = ExtResource("1_main")
+
+[node name="CombatWorld" parent="." instance=ExtResource("2_world")]
+
+[node name="FlightAudio" parent="." instance=ExtResource("3_audio")]
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="FlightMarker" type="Control" parent="Interface"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_marker")
+
+[node name="FlightHud" parent="Interface" instance=ExtResource("4_hud")]

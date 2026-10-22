@@ -8,11 +8,13 @@ using Airwar.Presentation;
 using Airwar.Inputs;
 using Airwar.UI;
 using Airwar.Audio;
+using Airwar.Arena;
 
 namespace Airwar;
 
 public partial class Main : Node
 {
+    private static bool _arenaEntryConsumed;
     private CombatWorld _world = null!;
     private FlightHud _hud = null!;
     private FlightAudio _audio = null!;
@@ -26,7 +28,7 @@ public partial class Main : Node
     private string _reviewDirectory = "";
     private string _scenario = "menu", _capture = "";
     private int _frame, _captureFrame = 320;
-    private bool _capturing;
+    private bool _capturing, _quitting;
     private Vector2 _lastSize;
     public GameSession? Session => _session;
     public CombatWorld World => _world;
@@ -35,11 +37,39 @@ public partial class Main : Node
     {
         Engine.MaxFps = 60;
         var args = OS.GetCmdlineUserArgs();
+        if (args.Contains("--arena-asset-test"))
+        { bool passed = ArenaAssetChecks.Run(); QuitSafely(passed ? 0 : 1); return; }
+        if (args.Contains("--arena-self-test"))
+        { bool passed = ArenaNetworkChecks.RunSelfTests(); QuitSafely(passed ? 0 : 1); return; }
+        if (ArenaNetworkChecks.TryRun(this, args))
+        {
+            GetNodeOrNull<FlightAudio>("FlightAudio")?.StopAll(); return;
+        }
+        if (!_arenaEntryConsumed && args.Contains("--arena-render-test"))
+        {
+            _arenaEntryConsumed = true;
+            CallDeferred(MethodName.OpenArenaRenderCheck); return;
+        }
+        if (!_arenaEntryConsumed && args.Contains("--arena-dedicated"))
+        {
+            _arenaEntryConsumed = true; GetNodeOrNull<FlightAudio>("FlightAudio")?.StopAll();
+            Callable.From(() => GetTree().ChangeSceneToFile("res://scenes/arena/Server.tscn")).CallDeferred(); return;
+        }
+        if (!_arenaEntryConsumed && args.Any(arg => arg is "--arena" or "--arena-server" or "--arena-flight" or "--arena-workflow-test" || arg.StartsWith("--arena-client=")))
+        {
+            _arenaEntryConsumed = true;
+            GetNodeOrNull<FlightAudio>("FlightAudio")?.StopAll();
+            CallDeferred(MethodName.OpenArena); return;
+        }
         _workflowTest = args.Contains("--workflow-test");
         _reviewMode = _workflowTest;
         if (args.Contains("--self-test"))
         {
-            bool passed = GameChecks.Run(); GetTree().Quit(passed ? 0 : 1); return;
+            bool passed = GameChecks.Run(); QuitSafely(passed ? 0 : 1); return;
+        }
+        if (args.Contains("--asset-test"))
+        {
+            bool passed = AssetChecks.Run(); QuitSafely(passed ? 0 : 1); return;
         }
         foreach (string arg in args)
         {
@@ -53,12 +83,14 @@ public partial class Main : Node
             _profile = PilotProfile.Load(Path.Combine(_reviewDirectory, "pilot.json")); _profile.Credits = 75;
         }
         else _profile = PilotProfile.Load();
-        _world = new CombatWorld(); AddChild(_world);
-        _audio = new FlightAudio(); AddChild(_audio);
-        var layer = new CanvasLayer(); AddChild(layer);
-        var marker = new FlightMarker { Game = this }; layer.AddChild(marker); marker.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
-        _hud = new FlightHud { TouchLayout = OS.HasFeature("mobile") || args.Contains("--mobile-preview") }; layer.AddChild(_hud); _hud.Initialize(_profile);
+        _world = GetNode<CombatWorld>("CombatWorld");
+        _audio = GetNode<FlightAudio>("FlightAudio");
+        GetNode<FlightMarker>("Interface/FlightMarker").Game = this;
+        _hud = GetNode<FlightHud>("Interface/FlightHud");
+        _hud.TouchLayout = OS.HasFeature("mobile") || args.Contains("--mobile-preview");
+        _hud.Initialize(_profile);
         _hud.StartRequested += Start;
+        _hud.ArenaRequested += OpenArena;
         _hud.MenuRequested += ReturnToMenu;
         _hud.PauseRequested += Pause;
         _hud.ResumeRequested += Resume;
@@ -66,6 +98,7 @@ public partial class Main : Node
         _hud.PulseRequested += _input.Pulse;
         _hud.PreviewRequested += ship => _world.Plane.Build(ship);
         _hud.SettingsChanged += ApplyPreferences;
+        _world.Plane.Build(ShipCatalog.Find(_profile.SelectedShip));
         ApplyPreferences(); GetTree().AutoAcceptQuit = false; GetWindow().CloseRequested += Close;
         _lastSize = GetViewport().GetVisibleRect().Size;
         ApplySafeArea();
@@ -128,11 +161,40 @@ public partial class Main : Node
         _paused = false; _input.Reset(); _hud.ShowGame(); GetViewport().GuiReleaseFocus();
     }
 
-    private void Close() { RecordRun(); if (!_reviewMode) _profile.Save(); GetTree().Quit(); }
+    private void Close() { RecordRun(); if (!_reviewMode) _profile.Save(); QuitSafely(); }
+
+    private async void OpenArenaRenderCheck()
+    {
+        if (_quitting) return;
+        _quitting = true;
+        var audio = GetNodeOrNull<FlightAudio>("FlightAudio");
+        if (audio != null) await audio.StopAndDrainAsync();
+        GetTree().ChangeSceneToFile("res://scenes/arena/RenderCheck.tscn");
+    }
+
+    private async void OpenArena()
+    {
+        if (_quitting) return;
+        _quitting = true;
+        if (_profile != null) { RecordRun(); if (!_reviewMode) _profile.Save(); }
+        _input.Reset();
+        var audio = GetNodeOrNull<FlightAudio>("FlightAudio");
+        if (audio != null) await audio.StopAndDrainAsync();
+        GetTree().ChangeSceneToFile("res://scenes/arena/Arena.tscn");
+    }
+
+    private async void QuitSafely(int exitCode = 0)
+    {
+        if (_quitting) return;
+        _quitting = true;
+        var audio = GetNodeOrNull<FlightAudio>("FlightAudio");
+        if (audio != null) await audio.StopAndDrainAsync();
+        GetTree().Quit(exitCode);
+    }
 
     public override void _Input(InputEvent inputEvent)
     {
-        if (_hud == null) return;
+        if (_hud == null || _quitting) return;
         if (_playing && !_paused && _session != null)
         {
             if (inputEvent is InputEventScreenTouch ownedTouch && _input.OwnsTouch(ownedTouch.Index))
@@ -164,7 +226,7 @@ public partial class Main : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        if (!_playing || _paused || _session == null) return;
+        if (_quitting || !_playing || _paused || _session == null) return;
         _accumulator += (float)delta;
         var command = _input.Sample();
         while (_accumulator >= GameSession.StepSeconds && !_session.Finished)
@@ -191,7 +253,7 @@ public partial class Main : Node
 
     public override void _Process(double delta)
     {
-        if (_hud == null) return;
+        if (_hud == null || _quitting) return;
         float dt = Math.Min((float)delta, .1f);
         _world.Render(_session, _paused ? 0 : dt);
         if (_session != null) _hud.UpdateGame(_session, _paused ? 0 : dt);
@@ -235,7 +297,7 @@ public partial class Main : Node
         RenderingServer.ForceDraw(false);
         Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(_capture))!);
         var image = GetViewport().GetTexture().GetImage(); var error = image.SavePng(_capture);
-        GD.Print("CAPTURE ", _capture, " ", error); GetTree().Quit(error == Error.Ok ? 0 : 1);
+        GD.Print("CAPTURE ", _capture, " ", error); QuitSafely(error == Error.Ok ? 0 : 1);
     }
 
     public override void _Notification(int what)
@@ -276,7 +338,7 @@ public partial class Main : Node
             Button? found = null;
             void Visit(Node node)
             {
-                if (node is Button button && button.Text.Contains(caption)) found = button;
+                if (node is Button button && button.IsVisibleInTree() && button.Text.Contains(caption)) found = button;
                 foreach (var child in node.GetChildren()) Visit(child);
             }
             Visit(_hud); return found ?? throw new InvalidOperationException("Button missing: " + caption);
@@ -285,6 +347,8 @@ public partial class Main : Node
         {
             await Frames();
             Check(_hud.Screen == "menu", "menu loads");
+            ulong menuInstance = _hud.GetNode("Menu").GetInstanceId();
+            ulong hangarInstance = _hud.GetNode("Hangar").GetInstanceId();
             var title = (Label)_hud.FindChild("LegacyTitle", true, false);
             for (int i = 0; i < 4; i++) title.EmitSignal(Control.SignalName.GuiInput, new InputEventMouseButton { ButtonIndex = MouseButton.Left, Pressed = true });
             Check(_hud.Screen == "menu", "legacy title stays hidden before fifth tap");
@@ -296,6 +360,9 @@ public partial class Main : Node
             FindButton("解锁战机").EmitSignal(Button.SignalName.Pressed); await Frames();
             Check(_profile.SelectedShip == "ember" && _profile.Credits == 50, "hangar purchase and equipment");
             FindButton("返回主菜单").EmitSignal(Button.SignalName.Pressed); await Frames();
+            Check(_hud.GetNode("Menu").GetInstanceId() == menuInstance &&
+                _hud.GetNode("Hangar").GetInstanceId() == hangarInstance,
+                "authored menu and hangar are reused across navigation");
             Godot.Input.ParseInputEvent(new InputEventKey { PhysicalKeycode = Key.Enter, Pressed = true }); await Frames();
             Check(_playing && _hud.Screen == "game", "keyboard starts game");
             var start = _session!.PlayerPosition;
@@ -382,24 +449,8 @@ public partial class Main : Node
             Check(_session.Finished && !_playing && _hud.Screen == "results", "death opens results");
             FindButton("返回主菜单").EmitSignal(Button.SignalName.Pressed); await Frames();
             Check(_session == null && _hud.Screen == "menu" && _world.IsMenu, "results returns to menu");
-            GD.Print("WORKFLOW_TEST_OK ", checks); GetTree().Quit();
+            GD.Print("WORKFLOW_TEST_OK ", checks); QuitSafely();
         }
-        catch (Exception e) { GD.PushError("WORKFLOW_TEST_FAILED " + e); GetTree().Quit(1); }
-    }
-}
-
-public partial class FlightMarker : Control
-{
-    public Main Game { get; set; } = null!;
-    public override void _Ready() => MouseFilter = MouseFilterEnum.Ignore;
-    public override void _Process(double delta) => QueueRedraw();
-    public override void _Draw()
-    {
-        var session = Game.Session;
-        if (session == null || Game.World.IsMenu) return;
-        Vector2 point = Game.World.Camera.UnprojectPosition(session.PlayerPosition);
-        var color = new Color("95f1f7");
-        DrawCircle(point, 3, color);
-        DrawArc(point, 9, 0, Mathf.Tau, 24, new Color(color, .4f), 1, true);
+        catch (Exception e) { GD.PushError("WORKFLOW_TEST_FAILED " + e); QuitSafely(1); }
     }
 }

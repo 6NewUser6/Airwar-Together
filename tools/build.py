@@ -25,7 +25,8 @@ def find_godot(explicit):
 def run(command, name, expected=None):
     log = ROOT / "artifacts" / "logs" / (name + ".log")
     log.parent.mkdir(parents=True, exist_ok=True)
-    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True,
+                            encoding="utf-8", errors="replace")
     output = result.stdout + result.stderr
     log.write_text(output, encoding="utf-8")
     # A Godot 4.7.2 editor shutdown diagnostic occurs after successful CLI export.
@@ -40,6 +41,8 @@ def package(platform):
     directory = ROOT / "builds" / platform.lower()
     shutil.copy2(PROJECT / "assets/fonts/LICENSE.txt", directory / "FONT-LICENSE.txt")
     shutil.copy2(ROOT / "docs/play.md", directory / "PLAY.md")
+    shutil.copy2(ROOT / "docs/orbital-frontier.md", directory / "ORBITAL-FRONTIER.md")
+    shutil.copy2(ROOT / "docs/third-party-assets.md", directory / "THIRD-PARTY-ASSETS.md")
     if platform == "Android":
         return
     version = re.search(r'^config/version="([\d.]+)"$', (PROJECT / "project.godot").read_text(), re.MULTILINE)
@@ -62,7 +65,11 @@ def main():
     godot = find_godot(args.godot)
     run(["dotnet", "build", str(PROJECT / "airwar-together.csproj"), "--nologo"], "build")
     if args.checks:
+        run([godot, "--headless", "--path", str(PROJECT), "--", "--asset-test"], "asset-checks", "ASSET_TEST_OK")
         run([godot, "--headless", "--path", str(PROJECT), "--", "--self-test"], "core-checks", "SELF_TEST_OK")
+        run([godot, "--headless", "--path", str(PROJECT), "--", "--arena-self-test"], "arena-checks", "ARENA_SELF_TEST PASS")
+        run([godot, "--headless", "--path", str(PROJECT), "--", "--arena-asset-test"], "arena-assets", "ARENA_ASSET_OK")
+        run([godot, "--headless", "--path", str(PROJECT), "--", "--arena-workflow-test"], "arena-workflow", "ARENA_WORKFLOW_OK")
     for platform in args.platform or ["Linux", "Windows", "Android"]:
         (ROOT / "builds" / platform.lower()).mkdir(parents=True, exist_ok=True)
         run([godot, "--headless", "--path", str(PROJECT), "--export-debug", platform], "export-" + platform.lower())

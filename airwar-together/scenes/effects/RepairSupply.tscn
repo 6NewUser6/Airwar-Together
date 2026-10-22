@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/materials/repair.tres" id="1_b8r84"]
+[ext_resource type="ArrayMesh" path="res://assets/meshes/rings/RepairRing.tres" id="2_hl6f6"]
+[ext_resource type="BoxMesh" path="res://assets/meshes/unit_box.tres" id="3_a7g2w"]
+
+[node name="Repair" type="Node3D" unique_id=1982532876]
+
+[node name="RepairRing" type="MeshInstance3D" parent="." unique_id=2056000359]
+material_override = ExtResource("1_b8r84")
+mesh = ExtResource("2_hl6f6")
+
+[node name="HorizontalMark" type="MeshInstance3D" parent="." unique_id=1304944216]
+transform = Transform3D(0.55, 0, 0, 0, 0.12, 0, 0, 0, 0.14, 0, 0, 0)
+material_override = ExtResource("1_b8r84")
+mesh = ExtResource("3_a7g2w")
+
+[node name="VerticalMark" type="MeshInstance3D" parent="." unique_id=622399024]
+transform = Transform3D(0.14, 0, 0, 0, 0.12, 0, 0, 0, 0.55, 0, 0, 0)
+material_override = ExtResource("1_b8r84")
+mesh = ExtResource("3_a7g2w")

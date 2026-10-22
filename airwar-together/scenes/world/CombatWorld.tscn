@@ -1,0 +1,1364 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/Presentation/CombatWorld.cs" id="14_controller"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Beam.tscn" id="15_beam"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Projectile.tscn" id="16_projectile"]
+[ext_resource type="PackedScene" path="res://scenes/effects/RepairSupply.tscn" id="17_repair"]
+[ext_resource type="PackedScene" path="res://scenes/effects/CreditsSupply.tscn" id="18_credits"]
+[ext_resource type="PackedScene" path="res://scenes/effects/Spark.tscn" id="19_spark"]
+[ext_resource type="Material" path="res://assets/materials/warning.tres" id="20_warning"]
+[ext_resource type="Environment" path="res://assets/materials/flight_environment.tres" id="1_t3bcr"]
+[ext_resource type="Material" path="res://assets/materials/ground.tres" id="2_1ulf6"]
+[ext_resource type="BoxMesh" path="res://assets/meshes/unit_box.tres" id="3_gk3xx"]
+[ext_resource type="Material" path="res://assets/materials/grid.tres" id="4_jpot8"]
+[ext_resource type="Material" path="res://assets/materials/dim.tres" id="5_enmjq"]
+[ext_resource type="Material" path="res://assets/materials/cyan.tres" id="6_vww1j"]
+[ext_resource type="ArrayMesh" path="res://assets/meshes/rings/OuterPadRing.tres" id="7_6iays"]
+[ext_resource type="ArrayMesh" path="res://assets/meshes/rings/InnerPadRing.tres" id="8_m80px"]
+[ext_resource type="ArrayMesh" path="res://assets/meshes/rings/MiddlePadRing.tres" id="9_a4im6"]
+[ext_resource type="Material" path="res://assets/materials/tower_metal.tres" id="10_di40a"]
+[ext_resource type="Material" path="res://assets/materials/orange.tres" id="11_l07ev"]
+[ext_resource type="MultiMesh" path="res://assets/meshes/star_field.tres" id="12_gnory"]
+[ext_resource type="PackedScene" path="res://scenes/ships/PlayerPlane.tscn" id="13_dxoi4"]
+
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_A.gltf" id="kay_basemodule_A"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_B.gltf" id="kay_basemodule_B"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_C.gltf" id="kay_basemodule_C"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_D.gltf" id="kay_basemodule_D"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/basemodule_E.gltf" id="kay_basemodule_E"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/roofmodule_solarpanels.gltf" id="kay_roofmodule_solarpanels"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/solarpanel.gltf" id="kay_solarpanel"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/drill_structure.gltf" id="kay_drill_structure"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/lander_A.gltf" id="kay_lander_A"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/landingpad_large.gltf" id="kay_landingpad_large"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/cargodepot_A.gltf" id="kay_cargodepot_A"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/containers_A.gltf" id="kay_containers_A"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/cargo_A_stacked.gltf" id="kay_cargo_A_stacked"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/lights.gltf" id="kay_lights"]
+[ext_resource type="PackedScene" path="res://assets/community/kaykit_space_base/structure_tall.gltf" id="kay_structure_tall"]
+
+[sub_resource type="StandardMaterial3D" id="RunwayDeck"]
+albedo_color = Color(0.035, 0.063, 0.095, 1)
+metallic = 0.35
+roughness = 0.82
+
+[sub_resource type="StandardMaterial3D" id="RunwayPaint"]
+albedo_color = Color(0.22, 0.31, 0.36, 1)
+roughness = 0.8
+
+[node name="CombatWorld" type="Node3D" unique_id=1773519521]
+
+script = ExtResource("14_controller")
+BeamScene = ExtResource("15_beam")
+ProjectileScene = ExtResource("16_projectile")
+RepairSupplyScene = ExtResource("17_repair")
+CreditsSupplyScene = ExtResource("18_credits")
+SparkScene = ExtResource("19_spark")
+LiveBeamMaterial = ExtResource("11_l07ev")
+WarningBeamMaterial = ExtResource("20_warning")
+[node name="Environment" type="WorldEnvironment" parent="." unique_id=1639117163]
+environment = ExtResource("1_t3bcr")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="." unique_id=344438916]
+transform = Transform3D(0.81915206, 0.4262504, -0.38379753, 0, 0.66913056, 0.74314487, 0.57357645, -0.6087487, 0.54811966, 0, 0, 0)
+light_color = Color(0.78039217, 0.8745098, 1, 1)
+light_energy = 1.6
+shadow_enabled = true
+directional_shadow_max_distance = 48.0
+
+[node name="FillLight" type="DirectionalLight3D" parent="." unique_id=1911334888]
+transform = Transform3D(-0.64278764, -0.3237444, 0.69427204, 0, 0.90630776, 0.42261827, -0.76604444, 0.2716538, -0.5825634, 0, 0, 0)
+light_color = Color(0.29411766, 0.67058825, 0.7490196, 1)
+light_energy = 0.9
+
+[node name="Camera" type="Camera3D" parent="." unique_id=576965839]
+transform = Transform3D(1, 0, 0, 0, 0.57565546, 0.8176924, 0, -0.8176924, 0.57565546, 0, 25, 17)
+projection = 1
+current = true
+size = 20.4
+near = 0.1
+far = 160.0
+
+[node name="Arena" type="Node3D" parent="." unique_id=1206298375]
+
+[node name="Floor" type="MeshInstance3D" parent="Arena" unique_id=382693045]
+transform = Transform3D(160, 0, 0, 0, 0.2, 0, 0, 0, 180, 0, -1.15, 0)
+material_override = ExtResource("2_1ulf6")
+mesh = ExtResource("3_gk3xx")
+
+[node name="RunwayDeck" type="MeshInstance3D" parent="Arena"]
+position = Vector3(0, -1.02, 0)
+scale = Vector3(22.4, 0.04, 140)
+material_override = SubResource("RunwayDeck")
+mesh = ExtResource("3_gk3xx")
+
+[node name="RunwayEdge_-1_0" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -67.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_1" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -61.4)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_2" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -55.8)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_3" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -50.2)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_4" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -44.6)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_5" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -39.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_6" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -33.400000000000006)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_7" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -27.800000000000004)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_8" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -22.200000000000003)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_9" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -16.6)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_10" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -11.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_11" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, -5.400000000000006)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_12" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 0.19999999999998863)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_13" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 5.799999999999997)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_14" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 11.399999999999991)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_15" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 17.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_16" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 22.599999999999994)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_17" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 28.19999999999999)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_18" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 33.8)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_19" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 39.39999999999999)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_20" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 45.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_21" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 50.599999999999994)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_22" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 56.19999999999999)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_-1_23" type="MeshInstance3D" parent="Arena"]
+position = Vector3(-10.7, -0.99, 61.79999999999998)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_0" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -67.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_1" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -61.4)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_2" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -55.8)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_3" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -50.2)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_4" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -44.6)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_5" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -39.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_6" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -33.400000000000006)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_7" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -27.800000000000004)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_8" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -22.200000000000003)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_9" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -16.6)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_10" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -11.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_11" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, -5.400000000000006)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_12" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 0.19999999999998863)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_13" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 5.799999999999997)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_14" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 11.399999999999991)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_15" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 17.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_16" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 22.599999999999994)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_17" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 28.19999999999999)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_18" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 33.8)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_19" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 39.39999999999999)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_20" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 45.0)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_21" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 50.599999999999994)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_22" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 56.19999999999999)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="RunwayEdge_1_23" type="MeshInstance3D" parent="Arena"]
+position = Vector3(10.7, -0.99, 61.79999999999998)
+scale = Vector3(0.12, 0.02, 2.3)
+material_override = SubResource("RunwayPaint")
+mesh = ExtResource("3_gk3xx")
+cast_shadow = 0
+
+[node name="Grid" type="Node3D" parent="Arena" unique_id=125471259]
+
+[node name="Longitudinal0" type="MeshInstance3D" parent="Arena/Grid" unique_id=120483858]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -45, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal3" type="MeshInstance3D" parent="Arena/Grid" unique_id=1922195776]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -42, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal6" type="MeshInstance3D" parent="Arena/Grid" unique_id=445472195]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -39, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal9" type="MeshInstance3D" parent="Arena/Grid" unique_id=459219127]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -36, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal12" type="MeshInstance3D" parent="Arena/Grid" unique_id=352970725]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -33, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal15" type="MeshInstance3D" parent="Arena/Grid" unique_id=1063693150]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -30, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal18" type="MeshInstance3D" parent="Arena/Grid" unique_id=1433288648]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -27, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal21" type="MeshInstance3D" parent="Arena/Grid" unique_id=969928034]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -24, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal24" type="MeshInstance3D" parent="Arena/Grid" unique_id=880948744]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -21, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal27" type="MeshInstance3D" parent="Arena/Grid" unique_id=990991204]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -18, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal30" type="MeshInstance3D" parent="Arena/Grid" unique_id=1850359656]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -15, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal33" type="MeshInstance3D" parent="Arena/Grid" unique_id=214050531]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -12, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal36" type="MeshInstance3D" parent="Arena/Grid" unique_id=142791942]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -9, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal39" type="MeshInstance3D" parent="Arena/Grid" unique_id=938071675]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -6, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal42" type="MeshInstance3D" parent="Arena/Grid" unique_id=1141686234]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, -3, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal45" type="MeshInstance3D" parent="Arena/Grid" unique_id=65909197]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 0, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal48" type="MeshInstance3D" parent="Arena/Grid" unique_id=2103203971]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 3, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal51" type="MeshInstance3D" parent="Arena/Grid" unique_id=310390893]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 6, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal54" type="MeshInstance3D" parent="Arena/Grid" unique_id=334169231]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 9, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal57" type="MeshInstance3D" parent="Arena/Grid" unique_id=312875510]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 12, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal60" type="MeshInstance3D" parent="Arena/Grid" unique_id=520402911]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 15, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal63" type="MeshInstance3D" parent="Arena/Grid" unique_id=1544074313]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 18, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal66" type="MeshInstance3D" parent="Arena/Grid" unique_id=602079411]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 21, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal69" type="MeshInstance3D" parent="Arena/Grid" unique_id=994485351]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 24, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal72" type="MeshInstance3D" parent="Arena/Grid" unique_id=1592456206]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 27, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal75" type="MeshInstance3D" parent="Arena/Grid" unique_id=2037039728]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 30, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal78" type="MeshInstance3D" parent="Arena/Grid" unique_id=1970487105]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 33, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal81" type="MeshInstance3D" parent="Arena/Grid" unique_id=928235792]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 36, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal84" type="MeshInstance3D" parent="Arena/Grid" unique_id=977662338]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 39, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal87" type="MeshInstance3D" parent="Arena/Grid" unique_id=1738903951]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 42, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Longitudinal90" type="MeshInstance3D" parent="Arena/Grid" unique_id=1869096891]
+transform = Transform3D(-0.025, 0, 0, 0, 0.025, 0, 0, 0, -140, 45, -1, 0)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral0" type="MeshInstance3D" parent="Arena/Grid" unique_id=1511616070]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -70)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral3" type="MeshInstance3D" parent="Arena/Grid" unique_id=385727477]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -67)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral6" type="MeshInstance3D" parent="Arena/Grid" unique_id=1349769603]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -64)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral9" type="MeshInstance3D" parent="Arena/Grid" unique_id=62101022]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -61)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral12" type="MeshInstance3D" parent="Arena/Grid" unique_id=358741250]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -58)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral15" type="MeshInstance3D" parent="Arena/Grid" unique_id=1107555144]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -55)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral18" type="MeshInstance3D" parent="Arena/Grid" unique_id=1830237534]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -52)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral21" type="MeshInstance3D" parent="Arena/Grid" unique_id=900021634]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -49)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral24" type="MeshInstance3D" parent="Arena/Grid" unique_id=1332300412]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -46)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral27" type="MeshInstance3D" parent="Arena/Grid" unique_id=267851648]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -43)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral30" type="MeshInstance3D" parent="Arena/Grid" unique_id=695569055]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -40)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral33" type="MeshInstance3D" parent="Arena/Grid" unique_id=456823449]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -37)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral36" type="MeshInstance3D" parent="Arena/Grid" unique_id=1494330885]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -34)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral39" type="MeshInstance3D" parent="Arena/Grid" unique_id=846856262]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -31)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral42" type="MeshInstance3D" parent="Arena/Grid" unique_id=437801571]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -28)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral45" type="MeshInstance3D" parent="Arena/Grid" unique_id=581936839]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -25)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral48" type="MeshInstance3D" parent="Arena/Grid" unique_id=1992176957]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -22)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral51" type="MeshInstance3D" parent="Arena/Grid" unique_id=2102754736]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -19)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral54" type="MeshInstance3D" parent="Arena/Grid" unique_id=227714188]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -16)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral57" type="MeshInstance3D" parent="Arena/Grid" unique_id=1520141494]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -13)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral60" type="MeshInstance3D" parent="Arena/Grid" unique_id=1556102567]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -10)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral63" type="MeshInstance3D" parent="Arena/Grid" unique_id=343600693]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -7)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral66" type="MeshInstance3D" parent="Arena/Grid" unique_id=802865992]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -4)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral69" type="MeshInstance3D" parent="Arena/Grid" unique_id=651852669]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, -1)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral72" type="MeshInstance3D" parent="Arena/Grid" unique_id=140499658]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 2)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral75" type="MeshInstance3D" parent="Arena/Grid" unique_id=597988163]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 5)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral78" type="MeshInstance3D" parent="Arena/Grid" unique_id=1522577326]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 8)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral81" type="MeshInstance3D" parent="Arena/Grid" unique_id=213967378]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 11)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral84" type="MeshInstance3D" parent="Arena/Grid" unique_id=202809177]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 14)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral87" type="MeshInstance3D" parent="Arena/Grid" unique_id=1621989908]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 17)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral90" type="MeshInstance3D" parent="Arena/Grid" unique_id=82971120]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 20)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral93" type="MeshInstance3D" parent="Arena/Grid" unique_id=1357539585]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 23)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral96" type="MeshInstance3D" parent="Arena/Grid" unique_id=2005593894]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 26)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral99" type="MeshInstance3D" parent="Arena/Grid" unique_id=1763603854]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 29)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral102" type="MeshInstance3D" parent="Arena/Grid" unique_id=1016323575]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 32)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral105" type="MeshInstance3D" parent="Arena/Grid" unique_id=53046322]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 35)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral108" type="MeshInstance3D" parent="Arena/Grid" unique_id=321080969]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 38)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral111" type="MeshInstance3D" parent="Arena/Grid" unique_id=1266775563]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 41)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral114" type="MeshInstance3D" parent="Arena/Grid" unique_id=655158389]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 44)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral117" type="MeshInstance3D" parent="Arena/Grid" unique_id=457585308]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 47)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral120" type="MeshInstance3D" parent="Arena/Grid" unique_id=701816356]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 50)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral123" type="MeshInstance3D" parent="Arena/Grid" unique_id=813885511]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 53)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral126" type="MeshInstance3D" parent="Arena/Grid" unique_id=633921746]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 56)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral129" type="MeshInstance3D" parent="Arena/Grid" unique_id=998636395]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 59)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral132" type="MeshInstance3D" parent="Arena/Grid" unique_id=1573647210]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 62)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral135" type="MeshInstance3D" parent="Arena/Grid" unique_id=210482198]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 65)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Lateral138" type="MeshInstance3D" parent="Arena/Grid" unique_id=512467694]
+transform = Transform3D(0, 0, -90, 0, 0.025, 0, 0.025, 0, 0, 0, -1, 68)
+material_override = ExtResource("4_jpot8")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Boundary" type="Node3D" parent="." unique_id=1055959231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.82, 0)
+visible = false
+
+[node name="North" type="MeshInstance3D" parent="Boundary" unique_id=312874782]
+transform = Transform3D(0, 0, -21.2, 0, 0.08, 0, 0.08, 0, 0, 0, 0, -6.5)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="South" type="MeshInstance3D" parent="Boundary" unique_id=385726611]
+transform = Transform3D(0, 0, -21.2, 0, 0.08, 0, 0.08, 0, 0, 0, 0, 6.5)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="West" type="MeshInstance3D" parent="Boundary" unique_id=60101797]
+transform = Transform3D(-0.08, 0, 0, 0, 0.08, 0, 0, 0, -13, -10.6, 0, 0)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="East" type="MeshInstance3D" parent="Boundary" unique_id=2087867005]
+transform = Transform3D(-0.08, 0, 0, 0, 0.08, 0, 0, 0, -13, 10.6, 0, 0)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker0" type="MeshInstance3D" parent="Boundary" unique_id=1444688183]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -10, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker0" type="MeshInstance3D" parent="Boundary" unique_id=166350453]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -10, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker1" type="MeshInstance3D" parent="Boundary" unique_id=2120730620]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -8.18, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker1" type="MeshInstance3D" parent="Boundary" unique_id=231125939]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -8.18, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker2" type="MeshInstance3D" parent="Boundary" unique_id=718988137]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -6.36, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker2" type="MeshInstance3D" parent="Boundary" unique_id=1398325258]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -6.36, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker3" type="MeshInstance3D" parent="Boundary" unique_id=524985566]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -4.54, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker3" type="MeshInstance3D" parent="Boundary" unique_id=2049166403]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -4.54, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker4" type="MeshInstance3D" parent="Boundary" unique_id=463567289]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -2.72, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker4" type="MeshInstance3D" parent="Boundary" unique_id=1049065888]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -2.72, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker5" type="MeshInstance3D" parent="Boundary" unique_id=1350145312]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -0.9, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker5" type="MeshInstance3D" parent="Boundary" unique_id=1380838072]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, -0.9, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker6" type="MeshInstance3D" parent="Boundary" unique_id=1255691700]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 0.92, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker6" type="MeshInstance3D" parent="Boundary" unique_id=1336439213]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 0.92, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker7" type="MeshInstance3D" parent="Boundary" unique_id=739696419]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 2.74, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker7" type="MeshInstance3D" parent="Boundary" unique_id=1831608598]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 2.74, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker8" type="MeshInstance3D" parent="Boundary" unique_id=327582106]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 4.56, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker8" type="MeshInstance3D" parent="Boundary" unique_id=1165530753]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 4.56, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker9" type="MeshInstance3D" parent="Boundary" unique_id=685732457]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 6.38, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker9" type="MeshInstance3D" parent="Boundary" unique_id=1994746390]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 6.38, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker10" type="MeshInstance3D" parent="Boundary" unique_id=1596595279]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 8.2, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker10" type="MeshInstance3D" parent="Boundary" unique_id=95628700]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 8.2, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="NorthMarker11" type="MeshInstance3D" parent="Boundary" unique_id=645279139]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 10.02, 0, -6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="SouthMarker11" type="MeshInstance3D" parent="Boundary" unique_id=726716047]
+transform = Transform3D(0.2, 0, 0, 0, 0.035, 0, 0, 0, 0.22, 10.02, 0, 6.5)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="HangarPad" type="Node3D" parent="." unique_id=384650321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.75, 0)
+
+[node name="LaunchPlatform" parent="HangarPad" instance=ExtResource("kay_landingpad_large")]
+position = Vector3(0, -0.6, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(3.2, 3.2, 3.2)
+
+[node name="ServiceCargo" parent="HangarPad" instance=ExtResource("kay_containers_A")]
+position = Vector3(4.6, -0.3, -2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="ServiceBeacon" parent="HangarPad" instance=ExtResource("kay_lights")]
+position = Vector3(-4.6, -0.25, -2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.4, 1.4, 1.4)
+
+[node name="OuterPadRing" type="MeshInstance3D" parent="HangarPad" unique_id=838360934]
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("7_6iays")
+
+[node name="InnerPadRing" type="MeshInstance3D" parent="HangarPad" unique_id=2142192487]
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("8_m80px")
+
+[node name="MiddlePadRing" type="MeshInstance3D" parent="HangarPad" unique_id=162029987]
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("9_a4im6")
+
+[node name="PadMarker0" type="MeshInstance3D" parent="HangarPad" unique_id=1206363031]
+transform = Transform3D(0, 0, -0.3499999, 0, 0.08, 0, 0.08, 0, 0, 4.4750004, 0, 0)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker1" type="MeshInstance3D" parent="HangarPad" unique_id=403121947]
+transform = Transform3D(-0.024721349, 0, -0.33287, 0, 0.080000006, 0, 0.076084524, 0, -0.10815596, 4.2559776, 0, 1.382851)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker2" type="MeshInstance3D" parent="HangarPad" unique_id=922229514]
+transform = Transform3D(-0.047022842, 0, -0.28315592, 0, 0.08, 0, 0.064721346, 0, -0.20572495, 3.620351, 0, 2.6303391)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker3" type="MeshInstance3D" parent="HangarPad" unique_id=70533242]
+transform = Transform3D(-0.064721346, 0, -0.20572495, 0, 0.08, 0, 0.047022842, 0, -0.28315592, 2.6303391, 0, 3.620351)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker4" type="MeshInstance3D" parent="HangarPad" unique_id=994208585]
+transform = Transform3D(-0.076084524, 0, -0.10815596, 0, 0.080000006, 0, 0.024721349, 0, -0.33287, 1.382851, 0, 4.2559776)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker5" type="MeshInstance3D" parent="HangarPad" unique_id=1869904570]
+transform = Transform3D(-0.08, 0, -2.1430595e-17, 0, 0.08, 0, 4.8984234e-18, 0, -0.3499999, 2.7400568e-16, 0, 4.4750004)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker6" type="MeshInstance3D" parent="HangarPad" unique_id=255738652]
+transform = Transform3D(-0.076084524, 0, 0.10815596, 0, 0.080000006, 0, -0.024721349, 0, -0.33287, -1.382851, 0, 4.2559776)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker7" type="MeshInstance3D" parent="HangarPad" unique_id=869743956]
+transform = Transform3D(-0.064721346, 0, 0.20572495, 0, 0.08, 0, -0.047022842, 0, -0.28315592, -2.6303391, 0, 3.620351)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker8" type="MeshInstance3D" parent="HangarPad" unique_id=1359818236]
+transform = Transform3D(-0.047022842, 0, 0.28315592, 0, 0.08, 0, -0.064721346, 0, -0.20572495, -3.620351, 0, 2.6303391)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker9" type="MeshInstance3D" parent="HangarPad" unique_id=184171995]
+transform = Transform3D(-0.024721349, 0, 0.33287, 0, 0.080000006, 0, -0.076084524, 0, -0.10815596, -4.2559776, 0, 1.382851)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker10" type="MeshInstance3D" parent="HangarPad" unique_id=1818248778]
+transform = Transform3D(-9.796847e-18, 0, 0.3499999, 0, 0.08, 0, -0.08, 0, -4.286119e-17, -4.4750004, 0, 5.4801136e-16)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker11" type="MeshInstance3D" parent="HangarPad" unique_id=194797436]
+transform = Transform3D(0.024721349, 0, 0.33287, 0, 0.080000006, 0, -0.076084524, 0, 0.10815596, -4.2559776, 0, -1.382851)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker12" type="MeshInstance3D" parent="HangarPad" unique_id=1787721204]
+transform = Transform3D(0.047022842, 0, 0.28315592, 0, 0.08, 0, -0.064721346, 0, 0.20572495, -3.620351, 0, -2.6303391)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker13" type="MeshInstance3D" parent="HangarPad" unique_id=783373243]
+transform = Transform3D(0.064721346, 0, 0.20572495, 0, 0.08, 0, -0.047022842, 0, 0.28315592, -2.6303391, 0, -3.620351)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker14" type="MeshInstance3D" parent="HangarPad" unique_id=1790870395]
+transform = Transform3D(0.076084524, 0, 0.10815596, 0, 0.080000006, 0, -0.024721349, 0, 0.33287, -1.382851, 0, -4.2559776)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker15" type="MeshInstance3D" parent="HangarPad" unique_id=394192614]
+transform = Transform3D(0.08, 0, 6.4291865e-17, 0, 0.08, 0, -1.4695287e-17, 0, 0.3499999, -8.22017e-16, 0, -4.4750004)
+material_override = ExtResource("6_vww1j")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker16" type="MeshInstance3D" parent="HangarPad" unique_id=1092475982]
+transform = Transform3D(0.076084524, 0, -0.10815596, 0, 0.080000006, 0, 0.024721349, 0, 0.33287, 1.382851, 0, -4.2559776)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker17" type="MeshInstance3D" parent="HangarPad" unique_id=2049934486]
+transform = Transform3D(0.064721346, 0, -0.20572495, 0, 0.08, 0, 0.047022842, 0, 0.28315592, 2.6303391, 0, -3.620351)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker18" type="MeshInstance3D" parent="HangarPad" unique_id=760088427]
+transform = Transform3D(0.047022842, 0, -0.28315592, 0, 0.08, 0, 0.064721346, 0, 0.20572495, 3.620351, 0, -2.6303391)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="PadMarker19" type="MeshInstance3D" parent="HangarPad" unique_id=1082442820]
+transform = Transform3D(0.024721349, 0, -0.33287, 0, 0.080000006, 0, 0.076084524, 0, 0.10815596, 4.2559776, 0, -1.382851)
+material_override = ExtResource("5_enmjq")
+mesh = ExtResource("3_gk3xx")
+
+[node name="Scenery" type="Node3D" parent="."]
+
+[node name="Colony_West_0" type="Node3D" parent="Scenery"]
+position = Vector3(-13.2, -1, -52)
+
+[node name="Habitat" parent="Scenery/Colony_West_0" instance=ExtResource("kay_basemodule_A")]
+position = Vector3(-0.9, 0, 0)
+rotation = Vector3(0, 0.0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="SolarRoof" parent="Scenery/Colony_West_0" instance=ExtResource("kay_roofmodule_solarpanels")]
+position = Vector3(-0.9, 2.0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="PowerArray" parent="Scenery/Colony_West_0" instance=ExtResource("kay_solarpanel")]
+position = Vector3(0.25, 0.02, 4.0)
+rotation = Vector3(0, 0.3, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="ControlTower" parent="Scenery/Colony_West_0" instance=ExtResource("kay_structure_tall")]
+position = Vector3(-5, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(2.6, 2.6, 2.6)
+
+[node name="Colony_West_1" type="Node3D" parent="Scenery"]
+position = Vector3(-13.899999999999999, -1, -34)
+
+[node name="Habitat" parent="Scenery/Colony_West_1" instance=ExtResource("kay_basemodule_C")]
+position = Vector3(-0.9, 0, 0)
+rotation = Vector3(0, 1.5707963267948966, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Cargo" parent="Scenery/Colony_West_1" instance=ExtResource("kay_cargo_A_stacked")]
+position = Vector3(0.35, 0.02, 3.5)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.3, 1.3, 1.3)
+
+[node name="Beacon" parent="Scenery/Colony_West_1" instance=ExtResource("kay_lights")]
+position = Vector3(1.1, 0, -2.7)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="MiningTower" parent="Scenery/Colony_West_1" instance=ExtResource("kay_drill_structure")]
+position = Vector3(-5, 0, -2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(3.0, 3.0, 3.0)
+
+[node name="Colony_West_2" type="Node3D" parent="Scenery"]
+position = Vector3(-14.6, -1, -16)
+
+[node name="Habitat" parent="Scenery/Colony_West_2" instance=ExtResource("kay_cargodepot_A")]
+position = Vector3(-0.9, 0, 0)
+rotation = Vector3(0, 0.0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="SolarRoof" parent="Scenery/Colony_West_2" instance=ExtResource("kay_roofmodule_solarpanels")]
+position = Vector3(-0.9, 2.0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="PowerArray" parent="Scenery/Colony_West_2" instance=ExtResource("kay_solarpanel")]
+position = Vector3(0.25, 0.02, 4.0)
+rotation = Vector3(0, 0.3, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Colony_West_3" type="Node3D" parent="Scenery"]
+position = Vector3(-13.2, -1, 2)
+
+[node name="Habitat" parent="Scenery/Colony_West_3" instance=ExtResource("kay_basemodule_E")]
+position = Vector3(-0.9, 0, 0)
+rotation = Vector3(0, 1.5707963267948966, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Cargo" parent="Scenery/Colony_West_3" instance=ExtResource("kay_cargo_A_stacked")]
+position = Vector3(0.35, 0.02, 3.5)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.3, 1.3, 1.3)
+
+[node name="Beacon" parent="Scenery/Colony_West_3" instance=ExtResource("kay_lights")]
+position = Vector3(1.1, 0, -2.7)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="ControlTower" parent="Scenery/Colony_West_3" instance=ExtResource("kay_structure_tall")]
+position = Vector3(-5, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(2.6, 2.6, 2.6)
+
+[node name="Colony_West_4" type="Node3D" parent="Scenery"]
+position = Vector3(-13.899999999999999, -1, 20)
+
+[node name="Habitat" parent="Scenery/Colony_West_4" instance=ExtResource("kay_basemodule_B")]
+position = Vector3(-0.9, 0, 0)
+rotation = Vector3(0, 0.0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="SolarRoof" parent="Scenery/Colony_West_4" instance=ExtResource("kay_roofmodule_solarpanels")]
+position = Vector3(-0.9, 2.0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="PowerArray" parent="Scenery/Colony_West_4" instance=ExtResource("kay_solarpanel")]
+position = Vector3(0.25, 0.02, 4.0)
+rotation = Vector3(0, 0.3, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="MiningTower" parent="Scenery/Colony_West_4" instance=ExtResource("kay_drill_structure")]
+position = Vector3(-5, 0, -2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(3.0, 3.0, 3.0)
+
+[node name="Colony_West_5" type="Node3D" parent="Scenery"]
+position = Vector3(-14.6, -1, 38)
+
+[node name="Habitat" parent="Scenery/Colony_West_5" instance=ExtResource("kay_basemodule_D")]
+position = Vector3(-0.9, 0, 0)
+rotation = Vector3(0, 1.5707963267948966, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Cargo" parent="Scenery/Colony_West_5" instance=ExtResource("kay_cargo_A_stacked")]
+position = Vector3(0.35, 0.02, 3.5)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.3, 1.3, 1.3)
+
+[node name="Beacon" parent="Scenery/Colony_West_5" instance=ExtResource("kay_lights")]
+position = Vector3(1.1, 0, -2.7)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="Colony_East_0" type="Node3D" parent="Scenery"]
+position = Vector3(13.2, -1, -52)
+
+[node name="Habitat" parent="Scenery/Colony_East_0" instance=ExtResource("kay_basemodule_A")]
+position = Vector3(0.9, 0, 0)
+rotation = Vector3(0, 0.0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="SolarRoof" parent="Scenery/Colony_East_0" instance=ExtResource("kay_roofmodule_solarpanels")]
+position = Vector3(0.9, 2.0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="PowerArray" parent="Scenery/Colony_East_0" instance=ExtResource("kay_solarpanel")]
+position = Vector3(-0.25, 0.02, 4.0)
+rotation = Vector3(0, -0.3, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="ControlTower" parent="Scenery/Colony_East_0" instance=ExtResource("kay_structure_tall")]
+position = Vector3(5, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(2.6, 2.6, 2.6)
+
+[node name="Colony_East_1" type="Node3D" parent="Scenery"]
+position = Vector3(13.899999999999999, -1, -34)
+
+[node name="Habitat" parent="Scenery/Colony_East_1" instance=ExtResource("kay_basemodule_C")]
+position = Vector3(0.9, 0, 0)
+rotation = Vector3(0, 1.5707963267948966, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Cargo" parent="Scenery/Colony_East_1" instance=ExtResource("kay_cargo_A_stacked")]
+position = Vector3(-0.35, 0.02, 3.5)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.3, 1.3, 1.3)
+
+[node name="Beacon" parent="Scenery/Colony_East_1" instance=ExtResource("kay_lights")]
+position = Vector3(-1.1, 0, -2.7)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="MiningTower" parent="Scenery/Colony_East_1" instance=ExtResource("kay_drill_structure")]
+position = Vector3(5, 0, -2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(3.0, 3.0, 3.0)
+
+[node name="Colony_East_2" type="Node3D" parent="Scenery"]
+position = Vector3(14.6, -1, -16)
+
+[node name="Habitat" parent="Scenery/Colony_East_2" instance=ExtResource("kay_cargodepot_A")]
+position = Vector3(0.9, 0, 0)
+rotation = Vector3(0, 0.0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="SolarRoof" parent="Scenery/Colony_East_2" instance=ExtResource("kay_roofmodule_solarpanels")]
+position = Vector3(0.9, 2.0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="PowerArray" parent="Scenery/Colony_East_2" instance=ExtResource("kay_solarpanel")]
+position = Vector3(-0.25, 0.02, 4.0)
+rotation = Vector3(0, -0.3, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Colony_East_3" type="Node3D" parent="Scenery"]
+position = Vector3(13.2, -1, 2)
+
+[node name="Habitat" parent="Scenery/Colony_East_3" instance=ExtResource("kay_basemodule_E")]
+position = Vector3(0.9, 0, 0)
+rotation = Vector3(0, 1.5707963267948966, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Cargo" parent="Scenery/Colony_East_3" instance=ExtResource("kay_cargo_A_stacked")]
+position = Vector3(-0.35, 0.02, 3.5)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.3, 1.3, 1.3)
+
+[node name="Beacon" parent="Scenery/Colony_East_3" instance=ExtResource("kay_lights")]
+position = Vector3(-1.1, 0, -2.7)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="ControlTower" parent="Scenery/Colony_East_3" instance=ExtResource("kay_structure_tall")]
+position = Vector3(5, 0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(2.6, 2.6, 2.6)
+
+[node name="Colony_East_4" type="Node3D" parent="Scenery"]
+position = Vector3(13.899999999999999, -1, 20)
+
+[node name="Habitat" parent="Scenery/Colony_East_4" instance=ExtResource("kay_basemodule_B")]
+position = Vector3(0.9, 0, 0)
+rotation = Vector3(0, 0.0, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="SolarRoof" parent="Scenery/Colony_East_4" instance=ExtResource("kay_roofmodule_solarpanels")]
+position = Vector3(0.9, 2.0, 0)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="PowerArray" parent="Scenery/Colony_East_4" instance=ExtResource("kay_solarpanel")]
+position = Vector3(-0.25, 0.02, 4.0)
+rotation = Vector3(0, -0.3, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="MiningTower" parent="Scenery/Colony_East_4" instance=ExtResource("kay_drill_structure")]
+position = Vector3(5, 0, -2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(3.0, 3.0, 3.0)
+
+[node name="Colony_East_5" type="Node3D" parent="Scenery"]
+position = Vector3(14.6, -1, 38)
+
+[node name="Habitat" parent="Scenery/Colony_East_5" instance=ExtResource("kay_basemodule_D")]
+position = Vector3(0.9, 0, 0)
+rotation = Vector3(0, 1.5707963267948966, 0)
+scale = Vector3(2.0, 2.0, 2.0)
+
+[node name="Cargo" parent="Scenery/Colony_East_5" instance=ExtResource("kay_cargo_A_stacked")]
+position = Vector3(-0.35, 0.02, 3.5)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.3, 1.3, 1.3)
+
+[node name="Beacon" parent="Scenery/Colony_East_5" instance=ExtResource("kay_lights")]
+position = Vector3(-1.1, 0, -2.7)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(1.5, 1.5, 1.5)
+
+[node name="Stars" type="MultiMeshInstance3D" parent="." unique_id=1562598400]
+material_override = ExtResource("5_enmjq")
+multimesh = ExtResource("12_gnory")
+
+[node name="PlayerPlane" type="Node3D" parent="." unique_id=960837682 instance=ExtResource("13_dxoi4")]
+transform = Transform3D(1.3631948, 0.095448464, -0.30428493, -0.1253207, 1.3886906, -0.12582996, 0.29324812, 0.14975998, 1.3607268, 5, 2.2, 0)
+
+[node name="Entities" type="Node3D" parent="." unique_id=1645237947]
+
+[node name="Sparks" type="Node3D" parent="." unique_id=1996960046]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/Arena/ArenaController.cs" id="main"]
+[ext_resource type="Script" path="res://scripts/Arena/ArenaNetwork.cs" id="network"]
+[ext_resource type="PackedScene" path="res://scenes/arena/ArenaWorld.tscn" id="world"]
+[ext_resource type="PackedScene" path="res://scenes/arena/ArenaHud.tscn" id="hud"]
+[ext_resource type="Script" path="res://scripts/Arena/ArenaFlightDisplay.cs" id="display"]
+[ext_resource type="PackedScene" path="res://scenes/arena/ArenaAudio.tscn" id="audio"]
+
+[node name="OrbitalFrontier" type="Node"]
+script = ExtResource("main")
+
+[node name="Network" type="Node" parent="."]
+script = ExtResource("network")
+
+[node name="World" parent="." instance=ExtResource("world")]
+
+[node name="Audio" parent="." instance=ExtResource("audio")]
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="Interface" instance=ExtResource("hud")]
+
+[node name="Display" type="Control" parent="Interface/Hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("display")

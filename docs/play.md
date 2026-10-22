@@ -1,12 +1,12 @@
-# Airwar Together 0.1.1
+# Airwar Together 0.2.0
 
-科幻 2.5D 飞机生存游戏。躲避预警后的光束和移动弹幕，拾取补给，保持飞行。机体和场景均为真实 3D 网格；当前生存模式把移动限制在平面。
+包含科幻 2.5D 单人生存与 3D 星际联机空战。主菜单选择「开始生存」或「3D 星际空战」；两种模式共用机体与偏好设置。
 
 ## 运行
 
 Windows：解压整个发行包，双击 `AirwarTogether.exe`。Linux：解压整个发行包，运行 `AirwarTogether.x86_64`；若解压工具未保留可执行权限，先使用 `chmod +x AirwarTogether.x86_64`。`data_airwar-together_*` 目录必须和可执行文件放在一起，包中已经包含 .NET 运行时。
 
-Android：安装 `AirwarTogether-0.1.1.apk`。这是本地测试签名 APK，支持 ARM64、Android 7.0/API 24 或更新系统、OpenGL ES 3.0，固定横屏。触控与性能仍需真机确认。
+Android：安装 `AirwarTogether-arm64.apk`（应用版本 0.2.0）。这是本地测试签名 APK，支持 ARM64、Android 7.0/API 24 或更新系统、OpenGL ES 3.0，固定横屏。触控与性能仍需真机确认。
 
 ## 操作
 
@@ -28,10 +28,12 @@ Android：安装 `AirwarTogether-0.1.1.apk`。这是本地测试签名 APK，支
 
 在主菜单连续点击五次 `AIRWAR TOGETHER` 大标题，即可看到原作的鎏金“躲避射线”招牌。PC 点击和安卓点按均可触发，每次点击间隔不超过三秒。
 
-## 后续玩法
+## 3D 星际空战
 
-下一阶段可以接入自由三维飞行、武器/敌机、联机房间与服务端权威。当前版本的单人生存玩法可完整游玩。
+创建房间后，让其他玩家输入房主 IP 与 UDP 端口连接。默认 UDP 24567，一个房间最多 32 人，四个战区共享席位。可自由飞行、开火、推进、切换视角，在荒漠、冰海、火山与深空之间跃迁。电脑按住右键转向，左键/空格开火，Shift 推进，W/S 油门，A/D 滚转，方向键俯仰与偏航，J 跃迁，V 视角。安卓用左侧拖动与右侧多指操作按钮，下方滑杆调油门。
+
+房间菜单不会暂停服务器。其他设备需能访问房主；互联网直连需要开放并转发 UDP 端口。完整规则见 [星际空战说明](orbital-frontier.md)，发行 ZIP 同时附有 `ORBITAL-FRONTIER.md`。
 
 ## 资源
 
-战机、场景、UI、特效和音频使用本项目生成的资源。中文字体使用 Noto Sans CJK，授权见发行目录的 `FONT-LICENSE.txt`。彩蛋招牌使用用户提供的参考项目原始 `title.png`，保留原图的文字与鎏金效果。
+战机采用 Quaternius 的 10 种独立舰体，基地使用 KayKit 免费模型，均为 CC0；场景、UI、特效和音频包含本项目制作的资源。第三方来源见发行目录的 `THIRD-PARTY-ASSETS.md`。中文字体使用 Noto Sans CJK，授权见 `FONT-LICENSE.txt`。彩蛋招牌使用用户提供的参考项目原始 `title.png`。

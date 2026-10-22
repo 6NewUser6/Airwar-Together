@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://henra4tw0o1d"
+path="res://.godot/imported/asterion_2_0.obj-aae548a6530e4e740bfa441bc031275d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/asterion_2_0.obj-aae548a6530e4e740bfa441bc031275d.mesh"]
+
+source_file="res://assets/arena/terrain/asterion_2_0.obj"
+dest_files=["res://.godot/imported/asterion_2_0.obj-aae548a6530e4e740bfa441bc031275d.mesh", "res://.godot/imported/asterion_2_0.obj-aae548a6530e4e740bfa441bc031275d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

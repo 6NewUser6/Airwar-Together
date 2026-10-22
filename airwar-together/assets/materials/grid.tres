@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "grid"
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.0627451, 0.17254902, 0.23529412, 1)

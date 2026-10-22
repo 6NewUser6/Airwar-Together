@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/materials/spark.tres" id="1_jspxl"]
+[ext_resource type="BoxMesh" path="res://assets/meshes/unit_box.tres" id="2_akg4s"]
+
+[node name="Spark" type="Node3D" unique_id=981068580]
+
+[node name="Glow" type="MeshInstance3D" parent="." unique_id=1057381496]
+transform = Transform3D(0.055, 0, 0, 0, 0.055, 0, 0, 0, 0.15, 0, 0, 0)
+material_override = ExtResource("1_jspxl")
+mesh = ExtResource("2_akg4s")

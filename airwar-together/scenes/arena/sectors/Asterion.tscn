@@ -1,0 +1,426 @@
+[gd_scene format=3]
+
+[ext_resource type="Environment" path="res://assets/arena/materials/asterion_environment.tres" id="r1"]
+[ext_resource type="Material" path="res://assets/arena/materials/asterion_terrain.tres" id="r2"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_0_0.obj" id="r3"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_1_0.obj" id="r4"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_2_0.obj" id="r5"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_3_0.obj" id="r6"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_0_1.obj" id="r7"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_1_1.obj" id="r8"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_2_1.obj" id="r9"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_3_1.obj" id="r10"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_0_2.obj" id="r11"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_1_2.obj" id="r12"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_2_2.obj" id="r13"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_3_2.obj" id="r14"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_0_3.obj" id="r15"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_1_3.obj" id="r16"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_2_3.obj" id="r17"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/asterion_3_3.obj" id="r18"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/column0.obj" id="r19"]
+[ext_resource type="Material" path="res://assets/arena/materials/sandstone.tres" id="r20"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/column1.obj" id="r21"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/column2.obj" id="r22"]
+[ext_resource type="PackedScene" path="res://scenes/arena/props/MiningOutpost.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://scenes/arena/props/TransitGate.tscn" id="r24"]
+
+
+[node name="Asterion" type="Node3D"]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("r1")
+
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-33, -38, -12)
+light_color = Color(1.0, 0.878431, 0.694118, 1)
+light_energy = 0.95
+shadow_enabled = true
+directional_shadow_max_distance = 1400.0
+
+
+[node name="RimLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(24, 140, 0)
+light_color = Color(0.28, 0.48, 0.68, 1)
+light_energy = 0.45
+
+
+[node name="Terrain" type="Node3D" parent="."]
+
+
+[node name="Chunk00" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk10" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r4")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk20" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r5")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk30" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r6")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk01" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r7")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk11" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r8")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk21" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r9")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk31" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r10")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk02" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r11")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk12" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r12")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk22" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r13")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk32" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r14")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk03" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r15")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk13" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r16")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk23" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r17")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk33" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r18")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Sandstone0" type="MeshInstance3D" parent="."]
+position = Vector3(-420, 117.3835564832552, -600)
+scale = Vector3(95, 190, 100)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone1" type="MeshInstance3D" parent="."]
+position = Vector3(420, 175.28881294315153, -600)
+scale = Vector3(119, 232, 116)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone2" type="MeshInstance3D" parent="."]
+position = Vector3(-530, 257.3519451973451, -1040)
+scale = Vector3(143, 274, 132)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone3" type="MeshInstance3D" parent="."]
+position = Vector3(530, 132.22535727038658, -1040)
+scale = Vector3(95, 316, 148)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone4" type="MeshInstance3D" parent="."]
+position = Vector3(-640, 330.69823878951877, -1480)
+scale = Vector3(119, 358, 100)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone5" type="MeshInstance3D" parent="."]
+position = Vector3(640, 111.74182443077994, -1480)
+scale = Vector3(143, 190, 116)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone6" type="MeshInstance3D" parent="."]
+position = Vector3(-420, 366.4456165186874, -1920)
+scale = Vector3(95, 232, 132)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone7" type="MeshInstance3D" parent="."]
+position = Vector3(420, 165.4959351403555, -1920)
+scale = Vector3(119, 274, 148)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone8" type="MeshInstance3D" parent="."]
+position = Vector3(-530, 324.2636090682764, -2360)
+scale = Vector3(143, 316, 100)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone9" type="MeshInstance3D" parent="."]
+position = Vector3(530, 205.03189452978182, -2360)
+scale = Vector3(95, 358, 116)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone10" type="MeshInstance3D" parent="."]
+position = Vector3(-640, 212.40067962180936, -2800)
+scale = Vector3(119, 190, 132)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone11" type="MeshInstance3D" parent="."]
+position = Vector3(640, 223.6971938053332, -2800)
+scale = Vector3(143, 232, 148)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone12" type="MeshInstance3D" parent="."]
+position = Vector3(-420, 127.23678770672035, -3240)
+scale = Vector3(95, 274, 100)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone13" type="MeshInstance3D" parent="."]
+position = Vector3(420, 198.99471231416788, -3240)
+scale = Vector3(119, 316, 116)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone14" type="MeshInstance3D" parent="."]
+position = Vector3(-530, 142.86608014901353, -3680)
+scale = Vector3(143, 358, 132)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone15" type="MeshInstance3D" parent="."]
+position = Vector3(530, 197.12780499370714, -3680)
+scale = Vector3(95, 190, 148)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone16" type="MeshInstance3D" parent="."]
+position = Vector3(-640, 234.47655040019333, -4120)
+scale = Vector3(119, 232, 100)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone17" type="MeshInstance3D" parent="."]
+position = Vector3(640, 184.1099295284604, -4120)
+scale = Vector3(143, 274, 116)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone18" type="MeshInstance3D" parent="."]
+position = Vector3(-420, 252.06177165728593, -4560)
+scale = Vector3(95, 316, 132)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone19" type="MeshInstance3D" parent="."]
+position = Vector3(420, 176.91841186498925, -4560)
+scale = Vector3(119, 358, 148)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone20" type="MeshInstance3D" parent="."]
+position = Vector3(-530, 294.61941715391754, -5000)
+scale = Vector3(143, 190, 100)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Sandstone21" type="MeshInstance3D" parent="."]
+position = Vector3(530, 214.50637038760763, -5000)
+scale = Vector3(95, 232, 116)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Outpost0" parent="." instance=ExtResource("r23")]
+position = Vector3(0, 386.8331752502756, -1700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 0.0, 0)
+
+
+[node name="Outpost1" parent="." instance=ExtResource("r23")]
+position = Vector3(2800, 395.2455923543754, 1700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 0.74, 0)
+
+
+[node name="Outpost2" parent="." instance=ExtResource("r23")]
+position = Vector3(-3500, 401.29599594448973, -2700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 1.48, 0)
+
+
+[node name="Outpost3" parent="." instance=ExtResource("r23")]
+position = Vector3(5800, 479.8880921286102, -5300)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 2.2199999999999998, 0)
+
+
+[node name="Outpost4" parent="." instance=ExtResource("r23")]
+position = Vector3(-6000, 196.373265091431, 5000)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 2.96, 0)
+
+
+[node name="FlightGate0" parent="." instance=ExtResource("r24")]
+position = Vector3(0, 331.86765641950456, -700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.0, 0)
+
+
+[node name="FlightGate1" parent="." instance=ExtResource("r24")]
+position = Vector3(450, 351.8602063185083, -1450)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.11, 0)
+
+
+[node name="FlightGate2" parent="." instance=ExtResource("r24")]
+position = Vector3(-400, 542.0749848309299, -2400)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.22, 0)
+
+
+[node name="FlightGate3" parent="." instance=ExtResource("r24")]
+position = Vector3(200, 386.62006519989444, -3400)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.33, 0)
+
+
+[node name="FlightGate4" parent="." instance=ExtResource("r24")]
+position = Vector3(1200, 364.9360268700069, -4200)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.44, 0)
+

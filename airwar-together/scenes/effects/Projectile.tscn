@@ -1,0 +1,24 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/materials/orange.tres" id="1_v18h1"]
+[ext_resource type="SphereMesh" path="res://assets/meshes/unit_sphere.tres" id="2_muqfb"]
+[ext_resource type="Material" path="res://assets/materials/projectile_glow.tres" id="3_q00yi"]
+[ext_resource type="Material" path="res://assets/materials/warning.tres" id="4_ahi42"]
+[ext_resource type="BoxMesh" path="res://assets/meshes/unit_box.tres" id="5_6b3k6"]
+
+[node name="Projectile" type="Node3D" unique_id=220197370]
+
+[node name="Core" type="MeshInstance3D" parent="." unique_id=1187968456]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+material_override = ExtResource("1_v18h1")
+mesh = ExtResource("2_muqfb")
+
+[node name="Glow" type="MeshInstance3D" parent="." unique_id=954284235]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+material_override = ExtResource("3_q00yi")
+mesh = ExtResource("2_muqfb")
+
+[node name="Trail" type="MeshInstance3D" parent="." unique_id=1337833776]
+transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.7, 0, 0, 0.35)
+material_override = ExtResource("4_ahi42")
+mesh = ExtResource("5_6b3k6")

@@ -1,0 +1,8 @@
+[gd_resource type="SphereMesh" format=3]
+
+[resource]
+resource_name = "star"
+radius = 0.065
+height = 0.13
+radial_segments = 4
+rings = 2

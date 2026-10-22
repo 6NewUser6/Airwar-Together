@@ -1,0 +1,4 @@
+[gd_resource type="BoxMesh" format=3]
+
+[resource]
+resource_name = "unit_box"

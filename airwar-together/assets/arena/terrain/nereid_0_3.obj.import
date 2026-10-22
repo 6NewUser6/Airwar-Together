@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://qgydgic7svq1"
+path="res://.godot/imported/nereid_0_3.obj-22374b480fb325d729b73665ac1c02bd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/nereid_0_3.obj-22374b480fb325d729b73665ac1c02bd.mesh"]
+
+source_file="res://assets/arena/terrain/nereid_0_3.obj"
+dest_files=["res://.godot/imported/nereid_0_3.obj-22374b480fb325d729b73665ac1c02bd.mesh", "res://.godot/imported/nereid_0_3.obj-22374b480fb325d729b73665ac1c02bd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

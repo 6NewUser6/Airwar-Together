@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/materials/credits.tres" id="1_u0qbx"]
+[ext_resource type="ArrayMesh" path="res://assets/meshes/rings/CreditsRing.tres" id="2_k0ic2"]
+[ext_resource type="BoxMesh" path="res://assets/meshes/unit_box.tres" id="3_pot72"]
+
+[node name="Credits" type="Node3D" unique_id=752336851]
+
+[node name="CreditsRing" type="MeshInstance3D" parent="." unique_id=783206788]
+material_override = ExtResource("1_u0qbx")
+mesh = ExtResource("2_k0ic2")
+
+[node name="HorizontalMark" type="MeshInstance3D" parent="." unique_id=693704464]
+transform = Transform3D(0.55, 0, 0, 0, 0.12, 0, 0, 0, 0.14, 0, 0, 0)
+material_override = ExtResource("1_u0qbx")
+mesh = ExtResource("3_pot72")
+
+[node name="CreditToken" type="MeshInstance3D" parent="." unique_id=1276113387]
+transform = Transform3D(0.21213204, 0, 0.21213204, 0, 0.26, 0, -0.21213204, 0, 0.21213204, 0, 0, 0)
+material_override = ExtResource("1_u0qbx")
+mesh = ExtResource("3_pot72")

@@ -1,0 +1,12 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[resource]
+resource_name = "ships/shape5_Canards"
+_surfaces = [{
+"aabb": AABB(-1.25, -0.045, -1.2, 2.5, 0.09, 0.70000005),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("MzMzv+xROD2amZm/AAAAAOxROD0AAEC/AACgv+xROD0AAAC/MzMzv+xROL2amZm/AACgv+xROL0AAAC/AAAAAOxROL0AAEC/MzMzv+xROD2amZm/AACgP+xROD0AAAC/AAAAAOxROD0AAEC/MzMzv+xROL2amZm/AAAAAOxROL0AAEC/AACgP+xROL0AAAC/MzMzv+xROD2amZm/MzMzP+xROD2amZm/AACgP+xROD0AAAC/MzMzv+xROL2amZm/AACgP+xROL0AAAC/MzMzP+xROL2amZm/MzMzv+xROL2amZm/AACgv+xROD0AAAC/MzMzv+xROD2amZm/MzMzv+xROL2amZm/AACgv+xROL0AAAC/AACgv+xROD0AAAC/AACgv+xROL0AAAC/AAAAAOxROD0AAEC/AACgv+xROD0AAAC/AACgv+xROL0AAAC/AAAAAOxROL0AAEC/AAAAAOxROD0AAEC/AAAAAOxROL0AAEC/AACgP+xROD0AAAC/AAAAAOxROD0AAEC/AAAAAOxROL0AAEC/AACgP+xROL0AAAC/AACgP+xROD0AAAC/AACgP+xROL0AAAC/MzMzP+xROD2amZm/AACgP+xROD0AAAC/AACgP+xROL0AAAC/MzMzP+xROL2amZm/MzMzP+xROD2amZm/MzMzP+xROL2amZm/MzMzv+xROD2amZm/MzMzP+xROD2amZm/MzMzP+xROL2amZm/MzMzv+xROL2amZm/MzMzv+xROD2amZm//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//3///wAA/7//f///AAD/v/9///8AAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//3///wAA/7//f///AAD/v/9///8AAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//3///wAA/7//f///AAD/v/9///8AAP+/AABRuCVWjq8AAFG4JVaOrwAAUbglVo6vAABRuCVWjq8AAFG4JVaOrwAAUbglVo6vVJX/f1prYoxUlf9/WmtijFSV/39aa2KMVJX/f1prYoxUlf9/WmtijFSV/39aa2KMqmr/f6SUYoyqav9/pJRijKpq/3+klGKMqmr/f6SUYoyqav9/pJRijKpq/3+klGKM//9RuNmpjq///1G42amOr///UbjZqY6v//9RuNmpjq///1G42amOr///UbjZqY6v//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA")
+}]

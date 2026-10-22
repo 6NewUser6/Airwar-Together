@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "ships/raptor_exhaust"
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.9137255, 0.84313726, 0.6313726, 0.6)

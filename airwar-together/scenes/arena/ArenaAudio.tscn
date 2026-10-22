@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/Arena/ArenaAudio.cs" id="script"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/orbital_ambient.wav" id="music"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/engine.wav" id="engine"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/cannon.wav" id="cannon"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/impact.wav" id="impact"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/destruction.wav" id="destruction"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/boost_start.wav" id="boost"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/warp_charge.wav" id="charge"]
+[ext_resource type="AudioStream" path="res://assets/audio/arena/warp_arrival.wav" id="arrival"]
+
+[node name="ArenaAudio" type="Node"]
+script = ExtResource("script")
+CannonSound = ExtResource("cannon")
+ImpactSound = ExtResource("impact")
+DestructionSound = ExtResource("destruction")
+BoostSound = ExtResource("boost")
+ArrivalSound = ExtResource("arrival")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("music")
+volume_db = -15.0
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("engine")
+volume_db = -18.0
+
+[node name="Charge" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("charge")
+volume_db = -8.0
+
+[node name="Voices" type="Node" parent="."]
+
+[node name="Voice01" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice02" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice03" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice04" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice05" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice06" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice07" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0
+
+[node name="Voice08" type="AudioStreamPlayer" parent="Voices"]
+volume_db = -6.0

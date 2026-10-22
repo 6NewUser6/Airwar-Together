@@ -1,0 +1,12 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[resource]
+resource_name = "ships/shape0_LeftWing"
+_surfaces = [{
+"aabb": AABB(-2.5, -0.065, -0.7, 2.24, 0.13, 1.9000001),
+"format": 34359738375,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("uB6FvrgehT0zMzO/mpkJwLgehT2amZk/AAAgwLgehT0zM5M/uB6Fvrgehb0zMzO/AAAgwLgehb0zM5M/mpkJwLgehb2amZk/uB6FvrgehT0zMzO/XI/CvrgehT2amVk/mpkJwLgehT2amZk/uB6Fvrgehb0zMzO/mpkJwLgehb2amZk/XI/Cvrgehb2amVk/uB6Fvrgehb0zMzO/AAAgwLgehT0zM5M/uB6FvrgehT0zMzO/uB6Fvrgehb0zMzO/AAAgwLgehb0zM5M/AAAgwLgehT0zM5M/AAAgwLgehb0zM5M/mpkJwLgehT2amZk/AAAgwLgehT0zM5M/AAAgwLgehb0zM5M/mpkJwLgehb2amZk/mpkJwLgehT2amZk/mpkJwLgehb2amZk/XI/CvrgehT2amVk/mpkJwLgehT2amZk/mpkJwLgehb2amZk/XI/Cvrgehb2amVk/XI/CvrgehT2amVk/XI/Cvrgehb2amVk/uB6FvrgehT0zMzO/XI/CvrgehT2amVk/XI/Cvrgehb2amVk/uB6Fvrgehb0zMzO/uB6FvrgehT0zMzO//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//3///wAA/7//f///AAD/v/9///8AAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//3///wAA/7//f///AAD/v/9///8AAP+/AAAZxtlVeqYAABnG2VV6pgAAGcbZVXqmAAAZxtlVeqYAABnG2VV6pgAAGcbZVXqm/2//f7eP+oj/b/9/t4/6iP9v/3+3j/qI/2//f7eP+oj/b/9/t4/6iP9v/3+3j/qIIZX/f4hrQIwhlf9/iGtAjCGV/3+Ia0CMIZX/f4hrQIwhlf9/iGtAjCGV/3+Ia0CMzPb/f9l2pL/M9v9/2Xakv8z2/3/ZdqS/zPb/f9l2pL/M9v9/2Xakv8z2/3/ZdqS/")
+}]

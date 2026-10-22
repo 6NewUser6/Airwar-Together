@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Core/ShipDefinition.cs" id="1_definition"]
+[ext_resource type="PackedScene" path="res://scenes/ships/flare.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_definition")
+Id = "flare"
+Name = "耀斑"
+Role = "FLARE / 日冕涂装"
+Color = Color(0.96470588, 0.42352941, 0.48627451, 1)
+Shape = 1
+Cost = 25
+VisualScene = ExtResource("2_scene")

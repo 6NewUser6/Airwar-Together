@@ -1,0 +1,10 @@
+CC0 1.0 Universal
+
+To the extent possible under law, the authors of Airwar Together have waived all
+copyright and related or neighboring rights to the original generated audio
+files in this directory.
+
+These files may be copied, modified, distributed and performed, including for
+commercial purposes, without asking permission.
+
+Full legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode

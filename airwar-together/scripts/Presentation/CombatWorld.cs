@@ -5,8 +5,17 @@ using Airwar.Core;
 
 namespace Airwar.Presentation;
 
+/// <summary>Updates authored world and effect scenes from the simulation state.</summary>
 public partial class CombatWorld : Node3D
 {
+    [ExportGroup("Reusable effects")]
+    [Export] public PackedScene BeamScene { get; set; } = null!;
+    [Export] public PackedScene ProjectileScene { get; set; } = null!;
+    [Export] public PackedScene RepairSupplyScene { get; set; } = null!;
+    [Export] public PackedScene CreditsSupplyScene { get; set; } = null!;
+    [Export] public PackedScene SparkScene { get; set; } = null!;
+    [Export] public Material LiveBeamMaterial { get; set; } = null!;
+    [Export] public Material WarningBeamMaterial { get; set; } = null!;
     public Camera3D Camera { get; private set; } = null!;
     public PlaneVisual Plane { get; private set; } = null!;
     public bool IsMenu { get; set; } = true;
@@ -14,69 +23,25 @@ public partial class CombatWorld : Node3D
     private readonly Dictionary<int, Node3D> _entities = new();
     private readonly List<(Node3D Node, Vector3 Velocity, float Life)> _sparks = new();
     private readonly List<Node3D> _scenery = new();
-    private Node3D _pad = null!, _boundary = null!;
+    private Node3D _pad = null!, _boundary = null!, _entityRoot = null!, _sparkRoot = null!;
+    private Vector3 _cameraHome, _planeHome, _planeScale, _planeRotation;
     private float _time, _shake;
     private readonly Random _random = new(711);
-    private StandardMaterial3D _orange = null!, _warning = null!, _cyan = null!;
 
     public override void _Ready()
     {
-        _orange = Models.Material(new("ff764a"), 1.5f);
-        _warning = Models.Material(new Color("ffba7a") { A = .5f }, 1, true);
-        _cyan = Models.Material(new("65ddeb"), 1);
-        var environment = new Godot.Environment
-        {
-            BackgroundMode = Godot.Environment.BGMode.Color, BackgroundColor = new("050e1c"),
-            AmbientLightSource = Godot.Environment.AmbientSource.Color,
-            AmbientLightColor = new("81a2c9"), AmbientLightEnergy = .68f,
-            TonemapMode = Godot.Environment.ToneMapper.Filmic,
-            FogEnabled = true, FogLightColor = new("091e32"), FogDensity = .008f
-        };
-        AddChild(new WorldEnvironment { Environment = environment });
-        AddChild(new DirectionalLight3D { RotationDegrees = new(-48, -35, 0), LightColor = new("c7dfff"), LightEnergy = 1.6f, ShadowEnabled = true, DirectionalShadowMaxDistance = 48 });
-        AddChild(new DirectionalLight3D { RotationDegrees = new(-25, 130, 0), LightColor = new("4babbf"), LightEnergy = .9f });
-        Camera = new Camera3D { Projection = Camera3D.ProjectionType.Orthogonal, Size = 20, Position = new(0, 25, 17), Near = .1f, Far = 160, Current = true };
-        AddChild(Camera); Camera.LookAt(new Vector3(0, 0, -.6f));
-        Models.Box(this, new(0, -1.15f, 0), new(160, .2f, 180), Models.Material(new("071422")));
-        var grid = Models.Material(new("102c3c"), .5f);
-        for (int x = -45; x <= 45; x += 3) Models.Line(this, new(x, -1, -70), new(x, -1, 70), .025f, grid);
-        for (int z = -70; z <= 70; z += 3) Models.Line(this, new(-45, -1, z), new(45, -1, z), .025f, grid);
-        var dim = Models.Material(new("153a4e"), .5f);
-        _boundary = new Node3D { Position = new(0, -.82f, 0) }; AddChild(_boundary);
-        Models.Line(_boundary, new(-10.6f, 0, -6.5f), new(10.6f, 0, -6.5f), .08f, dim);
-        Models.Line(_boundary, new(-10.6f, 0, 6.5f), new(10.6f, 0, 6.5f), .08f, dim);
-        Models.Line(_boundary, new(-10.6f, 0, -6.5f), new(-10.6f, 0, 6.5f), .08f, dim);
-        Models.Line(_boundary, new(10.6f, 0, -6.5f), new(10.6f, 0, 6.5f), .08f, dim);
-        for (int i = 0; i < 12; i++)
-        {
-            float x = -10 + i * 1.82f;
-            Models.Box(_boundary, new(x, 0, -6.5f), new(.2f, .035f, .22f), _cyan);
-            Models.Box(_boundary, new(x, 0, 6.5f), new(.2f, .035f, .22f), _cyan);
-        }
-        _pad = new Node3D { Position = new(5, -.75f, 0) }; AddChild(_pad);
-        Models.Ring(_pad, 4.7f, dim, .07f);
-        Models.Ring(_pad, 3.8f, _cyan, .035f);
-        Models.Ring(_pad, 4.1f, dim, .035f);
-        for (int i = 0; i < 20; i++)
-        {
-            float a = Mathf.Tau * i / 20;
-            Models.Line(_pad, new(Mathf.Cos(a) * 4.3f, 0, Mathf.Sin(a) * 4.3f), new(Mathf.Cos(a) * 4.65f, 0, Mathf.Sin(a) * 4.65f), .08f, i % 5 == 0 ? _cyan : dim);
-        }
-        var metal = Models.Material(new("0c2334"));
-        for (int i = 0; i < 36; i++)
-        {
-            var tower = new Node3D { Position = new((i % 2 == 0 ? -1 : 1) * (14 + (float)_random.NextDouble() * 18), -1, -55 + i * 3.3f) };
-            AddChild(tower); _scenery.Add(tower);
-            float height = 1.3f + (float)_random.NextDouble() * 5;
-            Models.Box(tower, new(0, height / 2, 0), new(1.5f, height, 2.2f), metal);
-            Models.Box(tower, new(.78f, height * .6f, 0), new(.04f, height * .4f, .1f), dim);
-            Models.Box(tower, new(0, height + .02f, 0), new(.15f, .03f, .4f), i % 3 == 0 ? _orange : _cyan);
-        }
-        var stars = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D,
-            Mesh = new SphereMesh { Radius = .065f, Height = .13f, RadialSegments = 4, Rings = 2 }, InstanceCount = 140 };
-        for (int i = 0; i < 140; i++) stars.SetInstanceTransform(i, new Transform3D(Basis.Identity, new Vector3(-45 + (float)_random.NextDouble() * 90, 2 + (float)_random.NextDouble() * 8, -65 + (float)_random.NextDouble() * 100)));
-        AddChild(new MultiMeshInstance3D { Multimesh = stars, MaterialOverride = dim });
-        Plane = new PlaneVisual { Position = new(5, 2.2f, 0), Scale = Vector3.One * 1.4f }; AddChild(Plane); Plane.Build(ShipCatalog.All[0]);
+        Camera = GetNode<Camera3D>("Camera");
+        Plane = GetNode<PlaneVisual>("PlayerPlane");
+        _pad = GetNode<Node3D>("HangarPad");
+        _boundary = GetNode<Node3D>("Boundary");
+        _entityRoot = GetNode<Node3D>("Entities");
+        _sparkRoot = GetNode<Node3D>("Sparks");
+        foreach (var child in GetNode<Node3D>("Scenery").GetChildren())
+            if (child is Node3D scenery) _scenery.Add(scenery);
+        _cameraHome = Camera.Position;
+        _planeHome = Plane.Position;
+        _planeScale = Plane.Scale;
+        _planeRotation = Plane.Rotation;
     }
 
     public Vector3 ScreenToFlight(Vector2 position)
@@ -88,21 +53,23 @@ public partial class CombatWorld : Node3D
     public Vector3 ScreenDeltaToFlight(Vector2 from, Vector2 to)
     {
         // Relative touch input must retain motion outside the projected arena.
-        // Clamping either endpoint would turn edge gestures into zero deltas.
         return ProjectToFlightPlane(to) - ProjectToFlightPlane(from);
     }
 
     private Vector3 ProjectToFlightPlane(Vector2 position)
     {
-        var origin = Camera.ProjectRayOrigin(position); var direction = Camera.ProjectRayNormal(position);
+        var origin = Camera.ProjectRayOrigin(position);
+        var direction = Camera.ProjectRayNormal(position);
         float distance = (GameSession.FlightHeight - origin.Y) / direction.Y;
         return origin + direction * distance;
     }
 
     public void ClearEntities()
     {
-        foreach (var node in _entities.Values) node.QueueFree(); _entities.Clear();
-        foreach (var spark in _sparks) spark.Node.QueueFree(); _sparks.Clear();
+        foreach (var node in _entities.Values) node.QueueFree();
+        _entities.Clear();
+        foreach (var spark in _sparks) spark.Node.QueueFree();
+        _sparks.Clear();
     }
 
     public void Render(GameSession? session, float dt)
@@ -110,8 +77,9 @@ public partial class CombatWorld : Node3D
         _time += dt;
         float aspect = GetViewport().GetVisibleRect().Size.X / Mathf.Max(1, GetViewport().GetVisibleRect().Size.Y);
         Camera.Size = IsMenu ? Mathf.Max(20.4f, 26f / aspect) : Mathf.Max(16.3f, 23.5f / aspect);
-        _pad.Visible = IsMenu; _boundary.Visible = !IsMenu;
-        Camera.Position = new(Mathf.Sin(_time * 38) * _shake, 25, 17 + Mathf.Cos(_time * 29) * _shake);
+        _pad.Visible = IsMenu;
+        _boundary.Visible = !IsMenu;
+        Camera.Position = _cameraHome + new Vector3(Mathf.Sin(_time * 38) * _shake, 0, Mathf.Cos(_time * 29) * _shake);
         _shake = Mathf.MoveToward(_shake, 0, dt * 2.2f);
         foreach (var tower in _scenery)
         {
@@ -120,11 +88,10 @@ public partial class CombatWorld : Node3D
         }
         if (IsMenu)
         {
-            Plane.Position = new(5, 2.2f + Mathf.Sin(_time * 1.2f) * .15f, 0);
-            Plane.Scale = Vector3.One * 1.4f;
-            Plane.Visible = true; Plane.Rotation = new(.09f, -.22f + Mathf.Sin(_time * .35f) * .16f, -.09f);
+            Plane.Position = _planeHome + Vector3.Up * Mathf.Sin(_time * 1.2f) * .15f;
+            Plane.Scale = _planeScale;
             Plane.Animate(_time, Vector3.Zero, 0, false);
-            Plane.Rotation = new(.09f, -.22f + Mathf.Sin(_time * .35f) * .16f, -.09f);
+            Plane.Rotation = _planeRotation + new Vector3(0, Mathf.Sin(_time * .35f) * .16f, 0);
         }
         else if (session != null)
         {
@@ -137,27 +104,27 @@ public partial class CombatWorld : Node3D
                 alive.Add(threat.Id);
                 if (!_entities.TryGetValue(threat.Id, out var node))
                 {
-                    node = new Node3D(); AddChild(node); _entities.Add(threat.Id, node);
+                    node = (threat.Kind == ThreatKind.Beam ? BeamScene : ProjectileScene).Instantiate<Node3D>();
+                    _entityRoot.AddChild(node);
+                    _entities.Add(threat.Id, node);
                     if (threat.Kind == ThreatKind.Beam)
                     {
-                        Models.Line(node, threat.Start, threat.End, .06f, _warning);
-                        Models.Line(node, threat.Start + Vector3.Down * 1.2f, threat.End + Vector3.Down * 1.2f, .035f, _warning);
-                        Models.Sphere(node, threat.Start, .22f, _orange); Models.Sphere(node, threat.End, .22f, _orange);
+                        node.SetMeta("warning_width", node.GetNode<MeshInstance3D>("Core").Scale.X);
+                        var trace = node.GetNode<MeshInstance3D>("GroundTrace");
+                        PositionLine(trace, threat.Start + Vector3.Down * 1.2f, threat.End + Vector3.Down * 1.2f, trace.Scale.X);
+                        node.GetNode<Node3D>("StartEmitter").Position = threat.Start;
+                        node.GetNode<Node3D>("EndEmitter").Position = threat.End;
                     }
-                    else
-                    {
-                        Models.Sphere(node, Vector3.Zero, .2f, _orange);
-                        Models.Sphere(node, Vector3.Zero, .35f, Models.Material(new Color(1, .3f, .1f, .2f), 1, true));
-                        var trail = Models.Box(node, new(0, 0, .35f), new(.075f, .075f, .7f), _warning);
-                        if (threat.Velocity.LengthSquared() > .0001f) node.Basis = Basis.LookingAt(threat.Velocity, Vector3.Up);
-                    }
+                    else if (threat.Velocity.LengthSquared() > .0001f)
+                        node.Basis = Basis.LookingAt(threat.Velocity, Vector3.Up);
                 }
                 if (threat.Kind == ThreatKind.Projectile) node.Position = threat.Position;
                 else
                 {
-                    var beam = (MeshInstance3D)node.GetChild(0);
-                    beam.MaterialOverride = threat.IsLive ? _orange : _warning;
-                    beam.Scale = new(threat.IsLive ? 4.2f : 1, threat.IsLive ? 4.2f : 1, 1);
+                    var beam = node.GetNode<MeshInstance3D>("Core");
+                    beam.MaterialOverride = threat.IsLive ? LiveBeamMaterial : WarningBeamMaterial;
+                    float width = node.GetMeta("warning_width").AsSingle() * (threat.IsLive ? 4.2f : 1);
+                    PositionLine(beam, threat.Start, threat.End, width);
                     node.Visible = threat.IsLive || Mathf.Sin(threat.Age * 24) > -.4f;
                 }
             }
@@ -166,14 +133,12 @@ public partial class CombatWorld : Node3D
                 alive.Add(supply.Id);
                 if (!_entities.TryGetValue(supply.Id, out var node))
                 {
-                    node = new Node3D(); AddChild(node); _entities.Add(supply.Id, node);
-                    var material = supply.Kind == SupplyKind.Repair ? Models.Material(new("8ce7b8"), 1) : Models.Material(new("f2c777"), 1);
-                    Models.Ring(node, .52f, material, .035f, 16);
-                    Models.Box(node, Vector3.Zero, new(.55f, .12f, .14f), material);
-                    if (supply.Kind == SupplyKind.Repair) Models.Box(node, Vector3.Zero, new(.14f, .12f, .55f), material);
-                    else Models.Box(node, Vector3.Zero, new(.3f, .26f, .3f), material).RotationDegrees = new(0, 45, 0);
+                    node = (supply.Kind == SupplyKind.Repair ? RepairSupplyScene : CreditsSupplyScene).Instantiate<Node3D>();
+                    _entityRoot.AddChild(node);
+                    _entities.Add(supply.Id, node);
                 }
-                node.Position = supply.Position + Vector3.Up * Mathf.Sin(_time * 3) * .18f; node.Rotation = new(0, _time, 0);
+                node.Position = supply.Position + Vector3.Up * Mathf.Sin(_time * 3) * .18f;
+                node.Rotation = new(0, _time, 0);
             }
             var expired = new List<int>();
             foreach (var pair in _entities) if (!alive.Contains(pair.Key)) expired.Add(pair.Key);
@@ -181,11 +146,21 @@ public partial class CombatWorld : Node3D
         }
         for (int i = _sparks.Count - 1; i >= 0; i--)
         {
-            var spark = _sparks[i]; float life = spark.Life - dt;
+            var spark = _sparks[i];
+            float life = spark.Life - dt;
             if (life <= 0) { spark.Node.QueueFree(); _sparks.RemoveAt(i); continue; }
-            spark.Node.Position += spark.Velocity * dt; spark.Node.Scale = Vector3.One * Mathf.Min(1, life * 2);
+            spark.Node.Position += spark.Velocity * dt;
+            spark.Node.Scale = Vector3.One * Mathf.Min(1, life * 2);
             _sparks[i] = (spark.Node, spark.Velocity, life);
         }
+    }
+
+    private static void PositionLine(MeshInstance3D line, Vector3 start, Vector3 end, float thickness)
+    {
+        var direction = end - start;
+        line.Position = (start + end) / 2;
+        var orientation = direction.LengthSquared() > .000001f ? Basis.LookingAt(direction, Vector3.Up) : Basis.Identity;
+        line.Basis = orientation * Basis.FromScale(new Vector3(thickness, thickness, direction.Length()));
     }
 
     public void OnFlightEvent(FlightEvent flightEvent)
@@ -194,11 +169,14 @@ public partial class CombatWorld : Node3D
         if (flightEvent.Kind == FlightEventKind.NearMiss || flightEvent.Kind == FlightEventKind.Finished) return;
         Color color = flightEvent.Kind == FlightEventKind.Hit ? new("ff8256") : Plane.Accent;
         int count = ReducedEffects ? 5 : flightEvent.Kind == FlightEventKind.Pulse ? 35 : 16;
-        var material = Models.Material(color, 1);
         for (int i = 0; i < count; i++)
         {
-            var spark = new Node3D { Position = flightEvent.Position }; AddChild(spark);
-            Models.Box(spark, Vector3.Zero, new(.055f, .055f, .15f), material);
+            var spark = SparkScene.Instantiate<Node3D>();
+            _sparkRoot.AddChild(spark);
+            spark.Position = flightEvent.Position;
+            var material = (StandardMaterial3D)spark.GetNode<MeshInstance3D>("Glow").MaterialOverride;
+            material.AlbedoColor = color;
+            material.Emission = color;
             float angle = Mathf.Tau * i / count;
             float speed = flightEvent.Kind == FlightEventKind.Pulse ? 13 : 4 + (float)_random.NextDouble() * 4;
             var velocity = new Vector3(Mathf.Cos(angle), .15f + (float)_random.NextDouble(), Mathf.Sin(angle)) * speed;

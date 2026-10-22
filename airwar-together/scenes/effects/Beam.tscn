@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://assets/materials/warning.tres" id="1_kdiot"]
+[ext_resource type="BoxMesh" path="res://assets/meshes/unit_box.tres" id="2_u8gyi"]
+[ext_resource type="Material" path="res://assets/materials/orange.tres" id="3_cuoji"]
+[ext_resource type="SphereMesh" path="res://assets/meshes/unit_sphere.tres" id="4_leylo"]
+
+[node name="Beam" type="Node3D" unique_id=716912568]
+
+[node name="Core" type="MeshInstance3D" parent="." unique_id=1842087128]
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 1, 0, 0, -0.5)
+material_override = ExtResource("1_kdiot")
+mesh = ExtResource("2_u8gyi")
+
+[node name="GroundTrace" type="MeshInstance3D" parent="." unique_id=1979091995]
+transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 1, 0, -1.2, -0.5)
+material_override = ExtResource("1_kdiot")
+mesh = ExtResource("2_u8gyi")
+
+[node name="StartEmitter" type="MeshInstance3D" parent="." unique_id=544436054]
+transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 0, 0, 0)
+material_override = ExtResource("3_cuoji")
+mesh = ExtResource("4_leylo")
+
+[node name="EndEmitter" type="MeshInstance3D" parent="." unique_id=1371314565]
+transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, 0, 0, -1)
+material_override = ExtResource("3_cuoji")
+mesh = ExtResource("4_leylo")

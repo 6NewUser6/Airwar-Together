@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/UI/FlightHud.cs" id="script"]
+[ext_resource type="Theme" path="res://assets/ui/FlightTheme.tres" id="theme"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MainMenu.tscn" id="Menu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Hangar.tscn" id="Hangar"]
+[ext_resource type="PackedScene" path="res://scenes/ui/Settings.tscn" id="Settings"]
+[ext_resource type="PackedScene" path="res://scenes/ui/GameHud.tscn" id="Game"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="Pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ResultsMenu.tscn" id="Results"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LegacyMenu.tscn" id="Legacy"]
+
+[node name="FlightHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("theme")
+script = ExtResource("script")
+
+[node name="Menu" parent="." instance=ExtResource("Menu")]
+
+[node name="Hangar" parent="." instance=ExtResource("Hangar")]
+visible = false
+
+[node name="Settings" parent="." instance=ExtResource("Settings")]
+visible = false
+
+[node name="Game" parent="." instance=ExtResource("Game")]
+visible = false
+
+[node name="Pause" parent="." instance=ExtResource("Pause")]
+visible = false
+
+[node name="Results" parent="." instance=ExtResource("Results")]
+visible = false
+
+[node name="Legacy" parent="." instance=ExtResource("Legacy")]
+visible = false
+
+[node name="Notice" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -78.0
+offset_right = 1150.0
+offset_bottom = -48.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 0.7411765, 0.5372549, 1)
+theme_override_font_sizes/font_size = 15

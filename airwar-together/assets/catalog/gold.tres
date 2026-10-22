@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShipDefinition" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/Core/ShipDefinition.cs" id="1_definition"]
+[ext_resource type="PackedScene" path="res://scenes/ships/gold.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_definition")
+Id = "gold"
+Name = "曙光"
+Role = "AURORA / 曙光涂装"
+Color = Color(0.90196078, 0.70980392, 0.38823529, 1)
+Shape = 5
+Cost = 25
+VisualScene = ExtResource("2_scene")

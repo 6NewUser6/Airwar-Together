@@ -1,0 +1,1122 @@
+[gd_scene format=3]
+
+[ext_resource type="Environment" path="res://assets/arena/materials/space_environment.tres" id="r1"]
+[ext_resource type="PackedScene" path="res://scenes/arena/props/DawnStation.tscn" id="r2"]
+[ext_resource type="PackedScene" path="res://scenes/arena/props/TransitGate.tscn" id="r3"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/sphere.tres" id="r4"]
+[ext_resource type="Material" path="res://assets/arena/materials/planet_body.tres" id="r5"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/planet_ring.obj" id="r6"]
+[ext_resource type="Material" path="res://assets/arena/materials/planet_ring.tres" id="r7"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/asteroid0.obj" id="r8"]
+[ext_resource type="Material" path="res://assets/arena/materials/rock.tres" id="r9"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/asteroid1.obj" id="r10"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/asteroid2.obj" id="r11"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/asteroid3.obj" id="r12"]
+
+
+[node name="DeepSpace" type="Node3D"]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("r1")
+
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-33, -38, -12)
+light_color = Color(0.823529, 0.890196, 1.0, 1)
+light_energy = 0.95
+shadow_enabled = true
+directional_shadow_max_distance = 1400.0
+
+
+[node name="RimLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(24, 140, 0)
+light_color = Color(0.28, 0.48, 0.68, 1)
+light_energy = 0.45
+
+
+[node name="Terrain" type="Node3D" parent="."]
+
+
+[node name="DawnStation" parent="." instance=ExtResource("r2")]
+position = Vector3(0, 400, -3400)
+scale = Vector3(1, 1, 1)
+
+
+[node name="TransitGate" parent="." instance=ExtResource("r3")]
+position = Vector3(-1000, 400, -1400)
+scale = Vector3(1.7, 1.7, 1.7)
+rotation = Vector3(0, 0.5, 0)
+
+
+[node name="NereidPlanet" type="MeshInstance3D" parent="."]
+position = Vector3(-7300, -2800, -8000)
+scale = Vector3(2200, 2200, 2200)
+mesh = ExtResource("r4")
+material_override = ExtResource("r5")
+cast_shadow = 0
+
+
+[node name="OrbitalRing" type="MeshInstance3D" parent="."]
+position = Vector3(-7300, -2800, -8000)
+scale = Vector3(1.45, 1.45, 1.45)
+mesh = ExtResource("r6")
+material_override = ExtResource("r7")
+cast_shadow = 0
+rotation = Vector3(1.1, 0.3, 0.4)
+
+
+[node name="Asteroid00" type="MeshInstance3D" parent="."]
+position = Vector3(4598.798641188856, 1416.837336281355, -1000.0)
+scale = Vector3(134.55876660259088, 134.55876660259088, 134.55876660259088)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.5802259071525935, 1.3755272375291403, 2.145608063112289)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid01" type="MeshInstance3D" parent="."]
+position = Vector3(-3463.9436077269506, 641.8159333429564, 2173.2575589372923)
+scale = Vector3(31.387834268492334, 31.387834268492334, 31.387834268492334)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.3688366674715662, 2.598727995033951, 1.9895066613899863)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid02" type="MeshInstance3D" parent="."]
+position = Vector3(261.50720839176165, 325.44872185450504, -3979.7554799036616)
+scale = Vector3(88.70515264296868, 88.70515264296868, 88.70515264296868)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.8500763370875655, 1.6054033669655872, 0.5711623351783391)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid03" type="MeshInstance3D" parent="."]
+position = Vector3(4510.709455862532, 107.53617776644705, 4883.413327580979)
+scale = Vector3(68.31301059662539, 68.31301059662539, 68.31301059662539)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.4757818767249318, 1.8674552506735964, 1.7031388770929659)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid04" type="MeshInstance3D" parent="."]
+position = Vector3(-3219.16005735147, -1220.946723947481, -1569.4210363523057)
+scale = Vector3(112.61501403592105, 112.61501403592105, 112.61501403592105)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.7144526555241049, 2.3537420865087118, 1.5841896198987395)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid05" type="MeshInstance3D" parent="."]
+position = Vector3(6221.371012049831, -1195.2303994538881, -4957.5370228085685)
+scale = Vector3(130.79249148477788, 130.79249148477788, 130.79249148477788)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.8791061600436945, 1.7036749578902204, 0.47187970378690347)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid06" type="MeshInstance3D" parent="."]
+position = Vector3(-1107.07077439515, -1083.5309219189514, 3118.2707415987143)
+scale = Vector3(159.58238450334642, 159.58238450334642, 159.58238450334642)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.7411673265802838, 2.7966248718920275, 0.8022874039669247)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid07" type="MeshInstance3D" parent="."]
+position = Vector3(-2514.80058526497, -718.39766760949, -5842.076461204484)
+scale = Vector3(61.61964902262408, 61.61964902262408, 61.61964902262408)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.6975687908360557, 0.24614105136005016, 2.365593588897335)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid08" type="MeshInstance3D" parent="."]
+position = Vector3(6616.987036334637, 962.8691588820052, 1416.499270143654)
+scale = Vector3(108.8413287613384, 108.8413287613384, 108.8413287613384)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.0591749229515313, 2.9242258025217938, 2.7520636550488184)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid09" type="MeshInstance3D" parent="."]
+position = Vector3(-4403.014872385657, 728.924067172597, 817.511187887199)
+scale = Vector3(123.99949196828578, 123.99949196828578, 123.99949196828578)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.6862428412113557, 2.3829816952091796, 2.516821946486428)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid10" type="MeshInstance3D" parent="."]
+position = Vector3(2257.9291711454252, 845.9665776610723, -5825.092362461045)
+scale = Vector3(102.4864344055655, 102.4864344055655, 102.4864344055655)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.24366655417113137, 0.7018173595700598, 1.0677661691443194)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid11" type="MeshInstance3D" parent="."]
+position = Vector3(1635.3724646967173, -216.02691829105606, 4213.778978116198)
+scale = Vector3(184.8508988227587, 184.8508988227587, 184.8508988227587)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.010616832414269, 1.85462710068136, 2.5286737119522478)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid12" type="MeshInstance3D" parent="."]
+position = Vector3(-3926.3020387465617, -738.7802192374293, -3275.3578273656885)
+scale = Vector3(41.63186752347041, 41.63186752347041, 41.63186752347041)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.8305664801581152, 2.2945296758624867, 1.31518103759042)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid13" type="MeshInstance3D" parent="."]
+position = Vector3(6031.239089934653, -377.0182579724767, -2325.9698776851)
+scale = Vector3(127.59795606395409, 127.59795606395409, 127.59795606395409)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.9770524497541762, 1.1062569251124708, 1.575264628356296)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid14" type="MeshInstance3D" parent="."]
+position = Vector3(-3317.4869889919196, 203.98860335752693, 3718.816118339999)
+scale = Vector3(125.75193848219841, 125.75193848219841, 125.75193848219841)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.6925691818883548, 2.5487308520677447, 1.4181996065085616)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid15" type="MeshInstance3D" parent="."]
+position = Vector3(-582.1189365345962, -691.8784928694349, -5492.050198316281)
+scale = Vector3(77.95356319750132, 77.95356319750132, 77.95356319750132)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.7244739094508614, 1.0973178187226038, 1.6243181746421986)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid16" type="MeshInstance3D" parent="."]
+position = Vector3(4083.1905821538858, 797.739318251387, 2441.291676388765)
+scale = Vector3(135.32944657255223, 135.32944657255223, 135.32944657255223)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.7502572490501088, 1.1252448987856274, 2.7248477959987643)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid17" type="MeshInstance3D" parent="."]
+position = Vector3(-7138.183349168107, 472.8285191395207, -704.7857828165022)
+scale = Vector3(156.21258631974231, 156.21258631974231, 156.21258631974231)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.8318163685296787, 1.2584253040765954, 1.956822475880366)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid18" type="MeshInstance3D" parent="."]
+position = Vector3(1462.3129273431105, 1160.0624368986478, -2455.2087097784915)
+scale = Vector3(89.3927011517704, 89.3927011517704, 89.3927011517704)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.968196093501688, 2.9152444153874364, 1.0343769321784255)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid19" type="MeshInstance3D" parent="."]
+position = Vector3(-100.96065858436735, 720.5425582152816, 1183.5738808636215)
+scale = Vector3(61.25356284534482, 61.25356284534482, 61.25356284534482)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.1984313852903046, 0.8871190445602187, 1.4428882539958137)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid20" type="MeshInstance3D" parent="."]
+position = Vector3(-2694.013730079465, -1043.951284054802, -4228.298666558005)
+scale = Vector3(139.90319333904756, 139.90319333904756, 139.90319333904756)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.154831049572125, 2.0051326397370204, 1.0839830218643653)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid21" type="MeshInstance3D" parent="."]
+position = Vector3(3613.1729073911088, 868.2448866419822, -513.8704422003076)
+scale = Vector3(169.80491665111694, 169.80491665111694, 169.80491665111694)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.2930032551952707, 1.999139359180945, 1.5640243052281004)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid22" type="MeshInstance3D" parent="."]
+position = Vector3(-3179.7457627292815, 946.1087793997231, 1212.408131254219)
+scale = Vector3(186.40529126506368, 186.40529126506368, 186.40529126506368)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.5467492028492926, 0.24677926052205745, 1.4219563869207024)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid23" type="MeshInstance3D" parent="."]
+position = Vector3(1307.9625395856453, 537.9202883373894, -6814.168091606733)
+scale = Vector3(63.2972519242722, 63.2972519242722, 63.2972519242722)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.4604469471763633, 2.3253092291644406, 2.7144510471232843)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid24" type="MeshInstance3D" parent="."]
+position = Vector3(1551.5264090765866, 324.2140354726473, 1707.5858550401254)
+scale = Vector3(58.65296666925982, 58.65296666925982, 58.65296666925982)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.910860975491871, 0.22456337330156273, 2.399275564994462)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid25" type="MeshInstance3D" parent="."]
+position = Vector3(-2008.5516081560115, -1031.4112314246515, -1640.7700360717117)
+scale = Vector3(55.19551599695143, 55.19551599695143, 55.19551599695143)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.36307840528852464, 1.2604207730106154, 1.1113065298829357)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid26" type="MeshInstance3D" parent="."]
+position = Vector3(5096.113734539446, -845.376691637254, -3354.5707398643954)
+scale = Vector3(77.37714064182937, 77.37714064182937, 77.37714064182937)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.156870401688229, 2.282567484948323, 1.0839157520911913)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid27" type="MeshInstance3D" parent="."]
+position = Vector3(-771.2692900869766, 785.2105439516963, 842.9406376330596)
+scale = Vector3(112.42369306278837, 112.42369306278837, 112.42369306278837)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.132086183002655, 2.396048274302479, 0.21194422106755573)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid28" type="MeshInstance3D" parent="."]
+position = Vector3(-1121.1375870018126, 818.0136810322833, -4116.985144551192)
+scale = Vector3(112.55481787564678, 112.55481787564678, 112.55481787564678)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.1564665740005102, 0.351194256209604, 2.057560070144942)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid29" type="MeshInstance3D" parent="."]
+position = Vector3(6250.736247300272, -868.0149300437381, 2285.158641548918)
+scale = Vector3(127.76500402644635, 127.76500402644635, 127.76500402644635)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.9341700890808295, 0.19934702931690518, 1.377760098869782)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid30" type="MeshInstance3D" parent="."]
+position = Vector3(-7159.60519792051, 837.0155047695735, 887.3017247006296)
+scale = Vector3(92.63908297021912, 92.63908297021912, 92.63908297021912)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.8004544836001752, 0.7339587529030661, 1.6794097110303328)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid31" type="MeshInstance3D" parent="."]
+position = Vector3(3479.7568910020505, 190.4327371680622, -6411.906202027848)
+scale = Vector3(91.65638468847027, 91.65638468847027, 91.65638468847027)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.770239349603902, 2.7293244781609767, 0.510260922544921)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid32" type="MeshInstance3D" parent="."]
+position = Vector3(1216.0501640674902, 128.2712767077942, 6075.5363015633375)
+scale = Vector3(98.23526877453142, 98.23526877453142, 98.23526877453142)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.49927519525656006, 0.11200438054533013, 2.554017858323589)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid33" type="MeshInstance3D" parent="."]
+position = Vector3(-2262.2796413809638, 1429.1235820810043, -2752.00907466709)
+scale = Vector3(125.37634154995656, 125.37634154995656, 125.37634154995656)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.0554408559729676, 2.937382606586277, 1.3896888754638028)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid34" type="MeshInstance3D" parent="."]
+position = Vector3(4838.444838413269, 1434.177467347161, -1400.8933160227978)
+scale = Vector3(39.29807377545886, 39.29807377545886, 39.29807377545886)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.4577376863002012, 2.2346807585245925, 0.30572435181324686)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid35" type="MeshInstance3D" parent="."]
+position = Vector3(-1849.3179156364808, 128.78688006134735, 999.0907233183448)
+scale = Vector3(126.56966867447122, 126.56966867447122, 126.56966867447122)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.571471374198277, 1.5326664936263508, 0.44975833827697465)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid36" type="MeshInstance3D" parent="."]
+position = Vector3(32.59310444039912, 443.25412470591345, -7692.540222489824)
+scale = Vector3(63.4974230136627, 63.4974230136627, 63.4974230136627)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.7458192451490209, 1.546411982226115, 2.659913831549646)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid37" type="MeshInstance3D" parent="."]
+position = Vector3(2484.250702433916, 109.51698816394901, 1738.4770409087182)
+scale = Vector3(187.2459286082049, 187.2459286082049, 187.2459286082049)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.8363643042352888, 2.2990573141933814, 2.740883401557473)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid38" type="MeshInstance3D" parent="."]
+position = Vector3(-6563.862090602631, 716.1130203812118, -1608.2794706178315)
+scale = Vector3(63.81736747295186, 63.81736747295186, 63.81736747295186)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.6033130883841227, 1.177834200604396, 1.1935059978329576)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid39" type="MeshInstance3D" parent="."]
+position = Vector3(4582.041894726159, 1100.5927568853372, -4477.671136305818)
+scale = Vector3(130.7893897371061, 130.7893897371061, 130.7893897371061)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.2362267540799186, 0.05903366970185808, 2.3929096718226006)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid40" type="MeshInstance3D" parent="."]
+position = Vector3(-538.2788886135925, 261.0697464403172, 1959.011220376069)
+scale = Vector3(159.80320620567656, 159.80320620567656, 159.80320620567656)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.44249348682911027, 0.3356584468481383, 2.700171346219946)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid41" type="MeshInstance3D" parent="."]
+position = Vector3(-1119.0458758412212, 718.6764180457099, -2778.2386744651003)
+scale = Vector3(161.08651940115533, 161.08651940115533, 161.08651940115533)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.8462305444855026, 1.1860872157541302, 1.213346837756767)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid42" type="MeshInstance3D" parent="."]
+position = Vector3(7128.644862536581, -116.85647855962975, 953.5920650441194)
+scale = Vector3(151.2099706889739, 151.2099706889739, 151.2099706889739)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.2395242465499883, 1.99815173901048, 1.8328190636319213)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid43" type="MeshInstance3D" parent="."]
+position = Vector3(-5784.385759074408, -640.2393593091325, 1968.5234578369505)
+scale = Vector3(109.80636094775507, 109.80636094775507, 109.80636094775507)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.0255726486054173, 1.5749225775441897, 2.0697836667263108)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid44" type="MeshInstance3D" parent="."]
+position = Vector3(971.2852440843941, 101.56008052372385, -3619.9564243613863)
+scale = Vector3(34.343708580761586, 34.343708580761586, 34.343708580761586)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.6470357843254262, 2.485128077857265, 0.029639593735329095)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid45" type="MeshInstance3D" parent="."]
+position = Vector3(2249.3097653932164, -510.8181985388603, 4525.209884634558)
+scale = Vector3(105.20307494115549, 105.20307494115549, 105.20307494115549)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.26647986521865275, 1.2936244285726255, 2.6928904199465764)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid46" type="MeshInstance3D" parent="."]
+position = Vector3(-6196.7368806239865, 1303.388593961592, -3936.669058955262)
+scale = Vector3(72.78209100069516, 72.78209100069516, 72.78209100069516)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.2289181592496927, 1.1861293003792788, 0.36389296550970796)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid47" type="MeshInstance3D" parent="."]
+position = Vector3(1668.238199927446, -666.5842058644989, -1514.3553915376542)
+scale = Vector3(164.0826561497185, 164.0826561497185, 164.0826561497185)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.53968531678062, 1.8711238297239439, 0.8913428642685487)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid48" type="MeshInstance3D" parent="."]
+position = Vector3(-2472.1039561859884, -675.0439097581044, 3218.313763078202)
+scale = Vector3(41.490222715935076, 41.490222715935076, 41.490222715935076)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.742766501207615, 2.583922050643381, 2.2497372586722117)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid49" type="MeshInstance3D" parent="."]
+position = Vector3(-873.7270659592632, -958.8433247249054, -5068.57145575876)
+scale = Vector3(49.458170334902434, 49.458170334902434, 49.458170334902434)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.12711930107532898, 1.6762030746974999, 0.8006792072976638)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid50" type="MeshInstance3D" parent="."]
+position = Vector3(3129.1043952163054, -986.8415402565222, 1222.715112981548)
+scale = Vector3(131.82523493223823, 131.82523493223823, 131.82523493223823)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.8397160312724774, 0.014580492260237832, 2.466019095270314)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid51" type="MeshInstance3D" parent="."]
+position = Vector3(-4052.110182938875, 254.82631750236646, -494.94509920199147)
+scale = Vector3(151.4136614487225, 151.4136614487225, 151.4136614487225)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.5352519175058723, 2.7369081309813383, 1.3535493176247932)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid52" type="MeshInstance3D" parent="."]
+position = Vector3(1678.0475094951562, 119.23759336418561, -2971.486782455597)
+scale = Vector3(184.55696835983824, 184.55696835983824, 184.55696835983824)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.47169987528056856, 1.637610892821108, 2.5047057442282843)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid53" type="MeshInstance3D" parent="."]
+position = Vector3(113.15770226809718, 1364.2331212108747, 2101.9413595972696)
+scale = Vector3(131.1330873700487, 131.1330873700487, 131.1330873700487)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.8998853252082437, 2.726174120762594, 2.875010017280336)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid54" type="MeshInstance3D" parent="."]
+position = Vector3(-3359.6915074172593, -57.15912552007967, -4409.13896038673)
+scale = Vector3(55.581972116545074, 55.581972116545074, 55.581972116545074)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.7826576416304962, 1.6849487579816331, 2.728091817437545)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid55" type="MeshInstance3D" parent="."]
+position = Vector3(2117.4475017403192, -203.92386829236034, -891.7603097312776)
+scale = Vector3(133.6846592977957, 133.6846592977957, 133.6846592977957)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.1537534135816774, 1.7631440626086907, 1.4854481660470462)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid56" type="MeshInstance3D" parent="."]
+position = Vector3(-5267.614705880645, 112.42130764243461, 3352.4796200891915)
+scale = Vector3(32.51837289886397, 32.51837289886397, 32.51837289886397)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.7921088508778236, 0.1732908157527845, 2.915910094576629)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid57" type="MeshInstance3D" parent="."]
+position = Vector3(408.44444008693864, -144.59958455820424, -3927.8090950768164)
+scale = Vector3(79.0514272678983, 79.0514272678983, 79.0514272678983)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.9482586000201727, 2.3210620013428835, 2.8934037214542)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid58" type="MeshInstance3D" parent="."]
+position = Vector3(3260.3258029720996, -1098.8135537760056, 3734.866827814725)
+scale = Vector3(63.678027943477375, 63.678027943477375, 63.678027943477375)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.38355695123161904, 0.002804832814132907, 1.7267434432367361)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid59" type="MeshInstance3D" parent="."]
+position = Vector3(-7305.534372946711, 782.210844280447, -2680.8821266301898)
+scale = Vector3(34.737439527749636, 34.737439527749636, 34.737439527749636)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.1939020213966485, 1.9845175918125628, 2.6733400312992917)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid60" type="MeshInstance3D" parent="."]
+position = Vector3(3439.6009919797307, 264.543124021641, -2948.8030480207312)
+scale = Vector3(162.2523118413326, 162.2523118413326, 162.2523118413326)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.4503723458435154, 0.8827335829436324, 1.9886628414930403)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid61" type="MeshInstance3D" parent="."]
+position = Vector3(-1689.8833940844631, 150.76722939780188, 4209.33845337774)
+scale = Vector3(61.793377753960925, 61.793377753960925, 61.793377753960925)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.2443438900250277, 1.465776997148375, 2.8286785265675505)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid62" type="MeshInstance3D" parent="."]
+position = Vector3(-1093.2480619607759, -473.2618458051903, -3396.758040448343)
+scale = Vector3(59.98484853675768, 59.98484853675768, 59.98484853675768)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.2464190686679402, 2.2058707738428223, 0.5937975350714323)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid63" type="MeshInstance3D" parent="."]
+position = Vector3(2028.2542447889978, 1391.2554895009098, -139.54566528632824)
+scale = Vector3(95.44273062514192, 95.44273062514192, 95.44273062514192)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.136850920265233, 0.8144434735130727, 2.3906965684429355)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid64" type="MeshInstance3D" parent="."]
+position = Vector3(-4107.9200834605535, 1401.369498004657, 455.0089704361885)
+scale = Vector3(108.60549487915645, 108.60549487915645, 108.60549487915645)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.6288725109032252, 0.2577375645104375, 2.0181647341455915)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid65" type="MeshInstance3D" parent="."]
+position = Vector3(2200.613342578311, 1219.7934407555217, -5138.088300688898)
+scale = Vector3(84.60075900929924, 84.60075900929924, 84.60075900929924)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.36942401027073657, 1.2063406977698627, 2.2376529280612143)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid66" type="MeshInstance3D" parent="."]
+position = Vector3(808.5893862824232, 625.0022937348799, 2129.187219201717)
+scale = Vector3(131.03090656581355, 131.03090656581355, 131.03090656581355)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.2024339714677057, 1.0824840947056837, 1.5444211695492411)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid67" type="MeshInstance3D" parent="."]
+position = Vector3(-3536.564507400198, 662.7911068896624, -3298.3667348397075)
+scale = Vector3(62.705665879514534, 62.705665879514534, 62.705665879514534)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.6950908367891797, 1.940889559950791, 2.8521568631400105)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid68" type="MeshInstance3D" parent="."]
+position = Vector3(6067.489833944799, -319.9090708254337, -2012.403935659011)
+scale = Vector3(178.9293345916462, 178.9293345916462, 178.9293345916462)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.93680631997262, 2.4330963073966942, 0.24115433075484582)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid69" type="MeshInstance3D" parent="."]
+position = Vector3(-2937.0182301175205, -372.236515229907, 2754.5077479842275)
+scale = Vector3(64.79720474437052, 64.79720474437052, 64.79720474437052)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.143880931518633, 1.6019779439937814, 2.2467724549463255)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid70" type="MeshInstance3D" parent="."]
+position = Vector3(-208.3964638000292, 633.7533298582209, -3673.3158275422784)
+scale = Vector3(125.88438747075642, 125.88438747075642, 125.88438747075642)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.7877280792357313, 1.2550937144372334, 0.2810129367200156)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid71" type="MeshInstance3D" parent="."]
+position = Vector3(4220.660586544357, 1448.6850073590867, 2942.7645529881197)
+scale = Vector3(31.812608012967356, 31.812608012967356, 31.812608012967356)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.2918940216994429, 0.12002515208266173, 2.336893259291383)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid72" type="MeshInstance3D" parent="."]
+position = Vector3(-2196.1233817014167, 1240.3933276370135, -1021.3910336192853)
+scale = Vector3(82.64101188961808, 82.64101188961808, 82.64101188961808)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.6444814718618086, 1.3930586395527393, 0.9492819287844984)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid73" type="MeshInstance3D" parent="."]
+position = Vector3(5484.2092194168545, 1154.1320713479167, -5926.609032709006)
+scale = Vector3(163.1017579804113, 163.1017579804113, 163.1017579804113)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.07781464171007213, 0.4375835230678161, 2.8275103128349546)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid74" type="MeshInstance3D" parent="."]
+position = Vector3(-598.4455940169235, 1322.7021351174212, 5132.552368443679)
+scale = Vector3(64.59355053477046, 64.59355053477046, 64.59355053477046)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.524078187462183, 1.2749201744466125, 0.08368513900433638)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid75" type="MeshInstance3D" parent="."]
+position = Vector3(-1015.1897685155311, 602.8105554662768, -2351.1879517557636)
+scale = Vector3(91.56952295398567, 91.56952295398567, 91.56952295398567)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.9213259019955968, 2.3203121459356546, 2.665022272142452)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid76" type="MeshInstance3D" parent="."]
+position = Vector3(4098.444688829709, -1261.8857967762794, -233.8063041522853)
+scale = Vector3(87.0963399221564, 87.0963399221564, 87.0963399221564)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.0177533428613295, 1.7403124650083777, 0.5865945125377318)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid77" type="MeshInstance3D" parent="."]
+position = Vector3(-3989.4823940659585, 162.2282652516451, 1483.5414662556927)
+scale = Vector3(174.38352880741357, 174.38352880741357, 174.38352880741357)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.9555886661020828, 1.6017460480910768, 1.9928982900055456)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid78" type="MeshInstance3D" parent="."]
+position = Vector3(1270.0541474997722, 750.9188227601176, -5547.42266014187)
+scale = Vector3(63.578620164194035, 63.578620164194035, 63.578620164194035)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.6354427700030472, 2.416119379806128, 1.4015263611289785)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid79" type="MeshInstance3D" parent="."]
+position = Vector3(3163.7728714512505, 1047.8257249668459, 5239.461832946737)
+scale = Vector3(102.26222739888469, 102.26222739888469, 102.26222739888469)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.9129124954260766, 2.746880551387179, 2.325040642556054)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid80" type="MeshInstance3D" parent="."]
+position = Vector3(-5232.0638123220115, -683.6103974401693, -2968.6955358579353)
+scale = Vector3(151.18821839454898, 151.18821839454898, 151.18821839454898)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.4827670629096307, 1.2998098281500088, 1.633699561760095)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid81" type="MeshInstance3D" parent="."]
+position = Vector3(4868.805018555867, -552.6293852255784, -2954.5013307345494)
+scale = Vector3(185.83002698643736, 185.83002698643736, 185.83002698643736)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.2812173155185793, 1.3476741772970868, 2.5163915839972897)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid82" type="MeshInstance3D" parent="."]
+position = Vector3(-1390.7727276707953, 448.69758996073983, 1898.1475941972512)
+scale = Vector3(40.50086460556726, 40.50086460556726, 40.50086460556726)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.2767787307412073, 2.750812389492427, 2.3676980753359342)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid83" type="MeshInstance3D" parent="."]
+position = Vector3(-1324.0137070494911, 375.40802491280897, -5369.71853445133)
+scale = Vector3(33.531289073823785, 33.531289073823785, 33.531289073823785)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.334329367324777, 1.267007007219001, 1.153994148295402)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid84" type="MeshInstance3D" parent="."]
+position = Vector3(1421.9010110696101, -84.69190775036077, -157.37835947797828)
+scale = Vector3(189.28837522296612, 189.28837522296612, 189.28837522296612)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.3580199087486453, 1.4550844366383469, 2.2209260707557985)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid85" type="MeshInstance3D" parent="."]
+position = Vector3(-6571.893484000508, 1310.3533374384178, 377.8697102728129)
+scale = Vector3(31.344874032657604, 31.344874032657604, 31.344874032657604)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.7748551055480657, 1.1477775464399254, 1.831758042191114)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid86" type="MeshInstance3D" parent="."]
+position = Vector3(2859.39933081361, -594.6977574542607, -4984.177721190059)
+scale = Vector3(183.19879475744366, 183.19879475744366, 183.19879475744366)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.946430770621738, 2.3225532157443194, 2.982996733906091)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid87" type="MeshInstance3D" parent="."]
+position = Vector3(472.5567850750011, -211.13169695511215, 2947.9334937989242)
+scale = Vector3(107.24227028080495, 107.24227028080495, 107.24227028080495)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.57910166959033, 1.5288860337643861, 2.6155487341148635)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid88" type="MeshInstance3D" parent="."]
+position = Vector3(-3201.8417612408102, 999.4214932678169, -3752.276371656149)
+scale = Vector3(137.7097155819256, 137.7097155819256, 137.7097155819256)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.292310438779583, 1.394527864349306, 2.4879418936994333)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid89" type="MeshInstance3D" parent="."]
+position = Vector3(6738.482247960513, 116.56678041901932, -1212.962722917958)
+scale = Vector3(131.5075043603877, 131.5075043603877, 131.5075043603877)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.3217453757924948, 0.8019722737240101, 0.43231527297923866)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid90" type="MeshInstance3D" parent="."]
+position = Vector3(-3513.737932917272, 348.4493370683065, 2429.2029939937406)
+scale = Vector3(96.86226242376844, 96.86226242376844, 96.86226242376844)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.8607964025094084, 0.5655085972853799, 2.6486449559167857)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid91" type="MeshInstance3D" parent="."]
+position = Vector3(198.60501668585042, -919.2916306675412, -4546.390829449193)
+scale = Vector3(81.84232524211225, 81.84232524211225, 81.84232524211225)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.611266618930141, 2.8608158242376533, 1.0605290811273922)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid92" type="MeshInstance3D" parent="."]
+position = Vector3(1673.605069363038, -733.8977951396839, 1045.6985914166291)
+scale = Vector3(189.1882745509306, 189.1882745509306, 189.1882745509306)
+mesh = ExtResource("r8")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(1.5528326936682784, 0.8700031053648783, 2.3725872369234065)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid93" type="MeshInstance3D" parent="."]
+position = Vector3(-2540.5632061317056, -389.4085677279654, -1367.0437217480178)
+scale = Vector3(144.51707520209564, 144.51707520209564, 144.51707520209564)
+mesh = ExtResource("r10")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(2.369742318625499, 0.11402693558687338, 1.740623650662262)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid94" type="MeshInstance3D" parent="."]
+position = Vector3(2613.539200841208, 1015.1246351694726, -2780.9256697299847)
+scale = Vector3(51.272290868432066, 51.272290868432066, 51.272290868432066)
+mesh = ExtResource("r11")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.34762797510893473, 2.0420809618732525, 0.25854986298573956)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+
+
+[node name="Asteroid95" type="MeshInstance3D" parent="."]
+position = Vector3(-649.7524510832429, 1017.3267526872701, 1762.35301897409)
+scale = Vector3(32.33559939895933, 32.33559939895933, 32.33559939895933)
+mesh = ExtResource("r12")
+material_override = ExtResource("r9")
+cast_shadow = 0
+rotation = Vector3(0.06111615274041049, 2.623981515601058, 2.767721349160644)
+visibility_range_end = 12000
+visibility_range_end_margin = 300.0
+

@@ -1,0 +1,507 @@
+[gd_scene load_steps=7 format=3]
+[ext_resource type="Script" path="res://scripts/Arena/ArenaHud.cs" id="script"]
+[ext_resource type="Theme" path="res://assets/ui/FlightTheme.tres" id="theme"]
+[ext_resource type="StyleBox" path="res://assets/ui/modal_panel.tres" id="panel"]
+[ext_resource type="StyleBox" path="res://assets/ui/arena_bar_health.tres" id="health"]
+[ext_resource type="StyleBox" path="res://assets/ui/arena_bar_energy.tres" id="energy"]
+[ext_resource type="StyleBox" path="res://assets/ui/arena_bar_background.tres" id="bar_bg"]
+
+[node name="ArenaHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("script")
+theme = ExtResource("theme")
+
+[node name="Lobby" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tint" type="ColorRect" parent="Lobby"]
+layout_mode = 1
+anchor_right = 0.49
+anchor_bottom = 1.0
+color = Color(0.018, 0.04, 0.065, 0.89)
+mouse_filter = 2
+
+[node name="Panel" type="MarginContainer" parent="Lobby"]
+layout_mode = 1
+anchor_right = 0.48
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_bottom = 22
+
+[node name="Column" type="VBoxContainer" parent="Lobby/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Brand" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "A / T     ORBITAL FRONTIER"
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.44,0.87,0.92,1)
+
+[node name="Title" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "星际空战"
+theme_override_font_sizes/font_size = 42
+
+[node name="Subtitle" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "32 人房间 · 四大战区 · 自由飞行与跃迁"
+theme_override_font_sizes/font_size = 16
+
+[node name="PlayerLabel" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "飞行员呼号"
+theme_override_font_sizes/font_size = 14
+
+[node name="Callsign" type="LineEdit" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 38)
+text = "Pilot"
+max_length = 18
+
+[node name="Ship" type="OptionButton" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 38)
+
+[node name="ServerLabel" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "服务器 IP / 域名"
+theme_override_font_sizes/font_size = 14
+
+[node name="Address" type="LineEdit" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 38)
+text = "127.0.0.1"
+max_length = 253
+
+[node name="Port" type="LineEdit" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 34)
+text = "24567"
+max_length = 5
+placeholder_text = "UDP 端口"
+
+[node name="Sector" type="OptionButton" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+
+[node name="Host" type="Button" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 46)
+text = "创建房间 / 本机试飞"
+focus_mode = 0
+theme_type_variation = &"PrimaryButton"
+
+[node name="Join" type="Button" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+text = "连接房间    →"
+focus_mode = 0
+theme_type_variation = &""
+
+[node name="Back" type="Button" parent="Lobby/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 36)
+text = "返回 2.5D 生存模式"
+focus_mode = 0
+theme_type_variation = &""
+
+[node name="Status" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "同一 Wi-Fi 填主机局域网 IP；互联网直连需要开放 UDP 端口。"
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+custom_minimum_size = Vector2(300, 40)
+
+[node name="LocalAddress" type="Label" parent="Lobby/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+
+[node name="WorldHint" type="Label" parent="Lobby"]
+layout_mode = 2
+mouse_filter = 2
+text = "探索 · 追击 · 跃迁\n\n荒漠峡谷 / 冰海群岛 / 火山工业区 / 深空航道"
+theme_override_font_sizes/font_size = 18
+anchor_left = 0.55
+anchor_right = 0.96
+anchor_top = 0.79
+anchor_bottom = 0.94
+horizontal_alignment = 2
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+
+[node name="Flight" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+visible = false
+
+[node name="Top" type="HBoxContainer" parent="Flight"]
+layout_mode = 1
+anchor_right = 1.0
+offset_left = 22.0
+offset_top = 16.0
+offset_right = -22.0
+offset_bottom = 60.0
+theme_override_constants/separation = 16
+
+[node name="Room" type="Label" parent="Flight/Top"]
+layout_mode = 2
+mouse_filter = 2
+text = "ORBITAL FRONTIER  /  01/32"
+theme_override_font_sizes/font_size = 15
+size_flags_horizontal = 3
+
+[node name="Sector" type="Label" parent="Flight/Top"]
+layout_mode = 2
+mouse_filter = 2
+text = "阿斯特里昂 · 峡谷前哨"
+theme_override_font_sizes/font_size = 18
+size_flags_horizontal = 3
+horizontal_alignment = 2
+
+[node name="Menu" type="Button" parent="Flight/Top"]
+layout_mode = 2
+custom_minimum_size = Vector2(84, 42)
+text = "菜单"
+focus_mode = 0
+theme_type_variation = &""
+
+[node name="Telemetry" type="Label" parent="Flight"]
+layout_mode = 2
+mouse_filter = 2
+text = "0540 km/h\n高度 0350 m\nX 0.0 Z 0.0 km"
+theme_override_font_sizes/font_size = 20
+offset_left = 28
+offset_top = 90
+offset_right = 285
+offset_bottom = 205
+
+[node name="Vitals" type="Label" parent="Flight"]
+layout_mode = 2
+mouse_filter = 2
+text = "机体 100 护盾 50\n能量 100 击落 0 / 损失 0"
+theme_override_font_sizes/font_size = 18
+offset_left = 28
+offset_top = 215
+offset_right = 350
+offset_bottom = 275
+
+[node name="Health" type="ProgressBar" parent="Flight"]
+layout_mode = 0
+offset_left = 28
+offset_top = 284
+offset_right = 245
+offset_bottom = 293
+value = 100.0
+show_percentage = false
+mouse_filter = 2
+theme_override_styles/background = ExtResource("bar_bg")
+theme_override_styles/fill = ExtResource("health")
+
+[node name="Energy" type="ProgressBar" parent="Flight"]
+layout_mode = 0
+offset_left = 28
+offset_top = 301
+offset_right = 245
+offset_bottom = 310
+value = 100.0
+show_percentage = false
+mouse_filter = 2
+theme_override_styles/background = ExtResource("bar_bg")
+theme_override_styles/fill = ExtResource("energy")
+
+[node name="Help" type="Label" parent="Flight"]
+layout_mode = 2
+mouse_filter = 2
+text = "右键转向 · 空格射击 · Shift 推进 · J 跃迁 · V 视角"
+theme_override_font_sizes/font_size = 13
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25
+offset_top = -30
+offset_right = -25
+offset_bottom = -8
+anchor_right = 1.0
+
+[node name="Respawn" type="Label" parent="Flight"]
+layout_mode = 2
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 30
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_top = 0.36
+anchor_bottom = 0.54
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Navigation" type="VBoxContainer" parent="Flight"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330
+offset_top = 90
+offset_right = -22
+offset_bottom = 260
+theme_override_constants/separation = 7
+
+[node name="Destination" type="OptionButton" parent="Flight/Navigation"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+focus_mode = 0
+
+[node name="Warp" type="Button" parent="Flight/Navigation"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 42)
+text = "跃迁 / J"
+focus_mode = 0
+theme_type_variation = &""
+
+[node name="Hint" type="Label" parent="Flight/Navigation"]
+layout_mode = 2
+mouse_filter = 2
+text = "目的地 / 选择战区后充能跃迁"
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+
+[node name="Throttle" type="VBoxContainer" parent="Flight"]
+layout_mode = 1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 0
+offset_top = -110
+offset_right = 0
+offset_bottom = -60
+
+[node name="Label" type="Label" parent="Flight/Throttle"]
+layout_mode = 2
+mouse_filter = 2
+text = "推力 / THROTTLE"
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+
+[node name="Slider" type="HSlider" parent="Flight/Throttle"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 28)
+min_value = 0.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Fire" type="Button" parent="Flight"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+text = "开火"
+focus_mode = 0
+theme_type_variation = &""
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -142
+offset_top = -198
+offset_right = -24
+offset_bottom = -84
+
+[node name="Boost" type="Button" parent="Flight"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+text = "推进"
+focus_mode = 0
+theme_type_variation = &""
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -265
+offset_top = -160
+offset_right = -153
+offset_bottom = -84
+
+[node name="RollRight" type="Button" parent="Flight"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+text = "右滚"
+focus_mode = 0
+theme_type_variation = &""
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -128
+offset_top = -280
+offset_right = -24
+offset_bottom = -212
+
+[node name="RollLeft" type="Button" parent="Flight"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 60)
+text = "左滚"
+focus_mode = 0
+theme_type_variation = &""
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -245
+offset_top = -250
+offset_right = -141
+offset_bottom = -178
+
+[node name="Camera" type="Button" parent="Flight"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+text = "视角 / V"
+focus_mode = 0
+theme_type_variation = &""
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -142
+offset_top = -74
+offset_right = -24
+offset_bottom = -34
+
+[node name="Scores" type="Button" parent="Flight"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+text = "战绩"
+focus_mode = 0
+theme_type_variation = &""
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28
+offset_top = -78
+offset_right = 125
+offset_bottom = -38
+
+[node name="Scoreboard" type="Label" parent="Flight"]
+layout_mode = 2
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 15
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_top = 0.1
+anchor_bottom = 0.9
+horizontal_alignment = 1
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+visible = false
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+visible = false
+
+[node name="Shade" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015,0.025,0.04,0.8)
+mouse_filter = 0
+
+[node name="Center" type="CenterContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Menu/Center"]
+layout_mode = 2
+custom_minimum_size = Vector2(470, 0)
+
+[node name="Column" type="VBoxContainer" parent="Menu/Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="Menu/Center/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "飞行菜单"
+theme_override_font_sizes/font_size = 34
+
+[node name="Hint" type="Label" parent="Menu/Center/Panel/Column"]
+layout_mode = 2
+mouse_filter = 2
+text = "房间仍在运行；打开菜单期间停止操纵与射击。"
+theme_override_font_sizes/font_size = 15
+
+[node name="Resume" type="Button" parent="Menu/Center/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 54)
+text = "继续飞行"
+focus_mode = 0
+theme_type_variation = &"PrimaryButton"
+
+[node name="Leave" type="Button" parent="Menu/Center/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "退出房间"
+focus_mode = 0
+theme_type_variation = &""
+
+[node name="Back" type="Button" parent="Menu/Center/Panel/Column"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "返回 2.5D 生存模式"
+focus_mode = 0
+theme_type_variation = &""
+
+[node name="Notice" type="Label" parent="."]
+layout_mode = 2
+mouse_filter = 2
+text = ""
+theme_override_font_sizes/font_size = 19
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_top = 0.09
+anchor_bottom = 0.17
+horizontal_alignment = 1
+autowrap_mode = 2
+visible = false
+theme_override_colors/font_color = Color(0.5,0.95,0.92,1)
+theme_override_colors/font_shadow_color = Color(0,0,0,1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2

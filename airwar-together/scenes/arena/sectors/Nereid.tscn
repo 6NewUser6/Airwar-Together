@@ -1,0 +1,690 @@
+[gd_scene format=3]
+
+[ext_resource type="Environment" path="res://assets/arena/materials/nereid_environment.tres" id="r1"]
+[ext_resource type="Material" path="res://assets/arena/materials/nereid_terrain.tres" id="r2"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_0_0.obj" id="r3"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_1_0.obj" id="r4"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_2_0.obj" id="r5"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_3_0.obj" id="r6"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_0_1.obj" id="r7"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_1_1.obj" id="r8"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_2_1.obj" id="r9"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_3_1.obj" id="r10"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_0_2.obj" id="r11"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_1_2.obj" id="r12"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_2_2.obj" id="r13"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_3_2.obj" id="r14"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_0_3.obj" id="r15"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_1_3.obj" id="r16"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_2_3.obj" id="r17"]
+[ext_resource type="ArrayMesh" path="res://assets/arena/terrain/nereid_3_3.obj" id="r18"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/column0.obj" id="r19"]
+[ext_resource type="Material" path="res://assets/arena/materials/ice.tres" id="r20"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/column1.obj" id="r21"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/column2.obj" id="r22"]
+[ext_resource type="PackedScene" path="res://scenes/arena/props/MiningOutpost.tscn" id="r23"]
+[ext_resource type="PackedScene" path="res://scenes/arena/props/TransitGate.tscn" id="r24"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/plane.tres" id="r25"]
+[ext_resource type="Material" path="res://assets/arena/materials/water.tres" id="r26"]
+[ext_resource type="Mesh" path="res://assets/arena/meshes/cylinder.tres" id="r27"]
+
+
+[node name="Nereid" type="Node3D"]
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("r1")
+
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-33, -38, -12)
+light_color = Color(0.882353, 0.956863, 1.0, 1)
+light_energy = 0.95
+shadow_enabled = true
+directional_shadow_max_distance = 1400.0
+
+
+[node name="RimLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(24, 140, 0)
+light_color = Color(0.28, 0.48, 0.68, 1)
+light_energy = 0.45
+
+
+[node name="Terrain" type="Node3D" parent="."]
+
+
+[node name="Chunk00" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r3")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk10" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r4")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk20" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r5")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk30" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r6")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk01" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r7")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk11" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r8")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk21" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r9")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk31" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r10")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk02" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r11")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk12" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r12")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk22" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r13")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk32" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r14")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk03" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r15")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk13" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r16")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk23" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r17")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="Chunk33" type="MeshInstance3D" parent="Terrain"]
+mesh = ExtResource("r18")
+material_override = ExtResource("r2")
+cast_shadow = 1
+
+
+[node name="IceSpire0" type="MeshInstance3D" parent="."]
+position = Vector3(-420, -8, -600)
+scale = Vector3(95, 190, 100)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire1" type="MeshInstance3D" parent="."]
+position = Vector3(420, -3.562194660358937, -600)
+scale = Vector3(119, 232, 116)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire2" type="MeshInstance3D" parent="."]
+position = Vector3(-530, -8, -1040)
+scale = Vector3(143, 274, 132)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire3" type="MeshInstance3D" parent="."]
+position = Vector3(530, -8, -1040)
+scale = Vector3(95, 316, 148)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire4" type="MeshInstance3D" parent="."]
+position = Vector3(-640, -8, -1480)
+scale = Vector3(119, 358, 100)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire5" type="MeshInstance3D" parent="."]
+position = Vector3(640, -8, -1480)
+scale = Vector3(143, 190, 116)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire6" type="MeshInstance3D" parent="."]
+position = Vector3(-420, -8, -1920)
+scale = Vector3(95, 232, 132)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire7" type="MeshInstance3D" parent="."]
+position = Vector3(420, -8, -1920)
+scale = Vector3(119, 274, 148)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire8" type="MeshInstance3D" parent="."]
+position = Vector3(-530, -8, -2360)
+scale = Vector3(143, 316, 100)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire9" type="MeshInstance3D" parent="."]
+position = Vector3(530, -8, -2360)
+scale = Vector3(95, 358, 116)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire10" type="MeshInstance3D" parent="."]
+position = Vector3(-640, -8, -2800)
+scale = Vector3(119, 190, 132)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire11" type="MeshInstance3D" parent="."]
+position = Vector3(640, -8, -2800)
+scale = Vector3(143, 232, 148)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire12" type="MeshInstance3D" parent="."]
+position = Vector3(-420, -8, -3240)
+scale = Vector3(95, 274, 100)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire13" type="MeshInstance3D" parent="."]
+position = Vector3(420, -8, -3240)
+scale = Vector3(119, 316, 116)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire14" type="MeshInstance3D" parent="."]
+position = Vector3(-530, -8, -3680)
+scale = Vector3(143, 358, 132)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire15" type="MeshInstance3D" parent="."]
+position = Vector3(530, -8, -3680)
+scale = Vector3(95, 190, 148)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire16" type="MeshInstance3D" parent="."]
+position = Vector3(-640, -8, -4120)
+scale = Vector3(119, 232, 100)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire17" type="MeshInstance3D" parent="."]
+position = Vector3(640, -8, -4120)
+scale = Vector3(143, 274, 116)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire18" type="MeshInstance3D" parent="."]
+position = Vector3(-420, -8, -4560)
+scale = Vector3(95, 316, 132)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire19" type="MeshInstance3D" parent="."]
+position = Vector3(420, 13.849725185758388, -4560)
+scale = Vector3(119, 358, 148)
+mesh = ExtResource("r21")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire20" type="MeshInstance3D" parent="."]
+position = Vector3(-530, -8, -5000)
+scale = Vector3(143, 190, 100)
+mesh = ExtResource("r22")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="IceSpire21" type="MeshInstance3D" parent="."]
+position = Vector3(530, 40.30319459139427, -5000)
+scale = Vector3(95, 232, 116)
+mesh = ExtResource("r19")
+material_override = ExtResource("r20")
+cast_shadow = 0
+visibility_range_end = 9500
+visibility_range_end_margin = 300.0
+
+
+[node name="Outpost0" parent="." instance=ExtResource("r23")]
+position = Vector3(0, 16, -1700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 0.0, 0)
+
+
+[node name="Outpost1" parent="." instance=ExtResource("r23")]
+position = Vector3(2800, 69.94809100968104, 1700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 0.74, 0)
+
+
+[node name="Outpost2" parent="." instance=ExtResource("r23")]
+position = Vector3(-3500, 16, -2700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 1.48, 0)
+
+
+[node name="Outpost3" parent="." instance=ExtResource("r23")]
+position = Vector3(5800, 16, -5300)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 2.2199999999999998, 0)
+
+
+[node name="Outpost4" parent="." instance=ExtResource("r23")]
+position = Vector3(-6000, 16, 5000)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, 2.96, 0)
+
+
+[node name="FlightGate0" parent="." instance=ExtResource("r24")]
+position = Vector3(0, 230, -700)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.0, 0)
+
+
+[node name="FlightGate1" parent="." instance=ExtResource("r24")]
+position = Vector3(450, 230, -1450)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.11, 0)
+
+
+[node name="FlightGate2" parent="." instance=ExtResource("r24")]
+position = Vector3(-400, 230, -2400)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.22, 0)
+
+
+[node name="FlightGate3" parent="." instance=ExtResource("r24")]
+position = Vector3(200, 230, -3400)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.33, 0)
+
+
+[node name="FlightGate4" parent="." instance=ExtResource("r24")]
+position = Vector3(1200, 266.0472289753958, -4200)
+scale = Vector3(1, 1, 1)
+rotation = Vector3(0, -0.44, 0)
+
+
+[node name="Ocean" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0)
+scale = Vector3(24000, 1, 24000)
+mesh = ExtResource("r25")
+material_override = ExtResource("r26")
+cast_shadow = 0
+
+
+[node name="IceFloe0" type="MeshInstance3D" parent="."]
+position = Vector3(0.0, 2, 1100.0)
+scale = Vector3(110, 5, 75)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 0, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe1" type="MeshInstance3D" parent="."]
+position = Vector3(932.1391891605883, 2, -1002.8554531360938)
+scale = Vector3(113, 5, 76)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 1, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe2" type="MeshInstance3D" parent="."]
+position = Vector3(-1653.6332506674955, 2, 141.74835317190318)
+scale = Vector3(116, 5, 77)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 2, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe4" type="MeshInstance3D" parent="."]
+position = Vector3(-387.00545431501484, 2, -2107.232011399432)
+scale = Vector3(122, 5, 79)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 4, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe5" type="MeshInstance3D" parent="."]
+position = Vector3(-1341.4322950010874, 2, 2025.2495009579811)
+scale = Vector3(125, 5, 80)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 5, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe6" type="MeshInstance3D" parent="."]
+position = Vector3(2684.5286188069927, 2, -691.114167528586)
+scale = Vector3(128, 5, 81)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 6, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe7" type="MeshInstance3D" parent="."]
+position = Vector3(-2715.955122759404, 2, -1345.1814752411785)
+scale = Vector3(131, 5, 82)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 7, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe8" type="MeshInstance3D" parent="."]
+position = Vector3(1146.6718622584506, 2, 2986.7207024960494)
+scale = Vector3(134, 5, 83)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 8, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe9" type="MeshInstance3D" parent="."]
+position = Vector3(1380.1267797908954, 2, -3180.182905704574)
+scale = Vector3(137, 5, 84)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 9, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe10" type="MeshInstance3D" parent="."]
+position = Vector3(-3531.7556118258326, 2, 1569.4623271468888)
+scale = Vector3(140, 5, 85)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 10, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe11" type="MeshInstance3D" parent="."]
+position = Vector3(3988.9116949794734, 2, 1183.6357092033077)
+scale = Vector3(143, 5, 86)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 11, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe12" type="MeshInstance3D" parent="."]
+position = Vector3(-2237.9802825517468, 2, -3650.2573055012035)
+scale = Vector3(146, 5, 87)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 12, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe13" type="MeshInstance3D" parent="."]
+position = Vector3(-1015.5570410025076, 2, 4375.966787728529)
+scale = Vector3(149, 5, 88)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 13, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe14" type="MeshInstance3D" parent="."]
+position = Vector3(4105.186597722738, 2, -2728.1092666743666)
+scale = Vector3(152, 5, 89)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 14, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe15" type="MeshInstance3D" parent="."]
+position = Vector3(-5256.427923248513, 2, -639.8184481370233)
+scale = Vector3(155, 5, 90)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 15, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe16" type="MeshInstance3D" parent="."]
+position = Vector3(3598.52376983236, 2, 4020.0587235115845)
+scale = Vector3(158, 5, 91)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 16, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe17" type="MeshInstance3D" parent="."]
+position = Vector3(238.46248807020805, 2, -5515.427708659609)
+scale = Vector3(161, 5, 92)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 17, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe18" type="MeshInstance3D" parent="."]
+position = Vector3(-4328.151313723514, 2, 4099.7316038047065)
+scale = Vector3(164, 5, 93)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 18, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe19" type="MeshInstance3D" parent="."]
+position = Vector3(6412.938582583035, 2, -283.2115172441404)
+scale = Vector3(167, 5, 94)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 19, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe20" type="MeshInstance3D" parent="."]
+position = Vector3(-5147.306230868568, 2, -4032.909338655958)
+scale = Vector3(170, 5, 95)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 20, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe21" type="MeshInstance3D" parent="."]
+position = Vector3(936.1033489666868, 2, 6500.737943834826)
+scale = Vector3(173, 5, 96)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 21, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe22" type="MeshInstance3D" parent="."]
+position = Vector3(4141.595020207365, 2, -5601.402967027561)
+scale = Vector3(176, 5, 97)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 22, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+
+
+[node name="IceFloe23" type="MeshInstance3D" parent="."]
+position = Vector3(-7354.747655743681, 2, 1559.7692096121232)
+scale = Vector3(179, 5, 98)
+mesh = ExtResource("r27")
+material_override = ExtResource("r20")
+cast_shadow = 0
+rotation = Vector3(0, 23, 0.04)
+visibility_range_end = 6000
+visibility_range_end_margin = 300.0
+

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "ships/gold_shield"
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.9019608, 0.70980394, 0.3882353, 0.65)
